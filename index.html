@@ -3,18 +3,38 @@
   <head>
     <meta charset="utf-8">
   </head>
-  <body style="margin: 0; display: grid; overflow: hidden; background:black;">
+  <body style="margin: 0; display: grid; overflow: hidden; background:rgb(24, 24, 24);">
     <style media='screen' type='text/css'>
     body canvas{margin:auto auto 0;}
+    #game-range{
+        width:25%;
+        position:absolute;
+        top:500px;
+        left:50%;
+        height:16px;
+        appearance:none;
+        outline:none;
+        transform:translateX(-50%);
+    }
+    #game-range[type=range]::-webkit-slider-thumb {
+        -webkit-appearance:none;
+        height:36px;
+        border:1px solid black;
+        width:16px;
+        border-radius:0%;
+        background:#fff00f;
+        cursor:pointer;
+    }
     .game-input{
-      width: 25%;
-      height: 100px;
-      position: absolute;
-      top:350px;
+      width:550px;
+      height:80px;
+      position:absolute;
+      top:300px;
       left:50%;
-      transform: translateX(-50%);
-      font-size: 100px;
-      outline: none;
+      font-family: Courier;
+      transform:translateX(-50%);
+      font-size:80px;
+      outline:none;
     }
     .game-input::selection{
       background-color:black;
