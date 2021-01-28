@@ -8,6 +8,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this)
         scene.physics.add.existing(this)
         this.name = name
+        this.setDepth(1)
         this.speed = 300
         this.setSize(30, 50)
         this.debugShowBody = false
@@ -74,6 +75,14 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             if (!x_dir && !y_dir) this.profession.close()
         }
         //this.hunger.drain()
+    }
+    
+    checkDepth() {
+        const key = 'x'+Math.round(this.x/96)+'y'+Math.round(this.y/96) 
+        if (this.scene.world[key].body.id != undefined) {
+            if(this.y > Math.round(this.y/96)*96) this.scene.world[key].body.src.setDepth(0)
+            else this.scene.world[key].body.src.setDepth(2)
+        }    
     }
 
     movement(event) {

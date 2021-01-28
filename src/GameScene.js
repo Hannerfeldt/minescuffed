@@ -36,12 +36,12 @@ export class GameScene extends Phaser.Scene {
         ]
 
         this.body = [
-            { key:'tree', mineduration:2, drop:[ { id:0, chance:1, quantity:2, chanceDivided:true } ], interaction:null},
-            { key:'bush', mineduration:1, drop:[ { id:0, chance:1, quantity:1, chanceDivided:false } ], interaction:null},
-            { key:'stone_ore', mineduration:3, drop:[ { id:1, chance:1, quantity:1, chanceDivided:false } ], interaction:null},
-            { key:'coal_ore', mineduration:4, drop:[ { id:2, chance:1, quantity:3, chanceDivided:true } ], interaction:null},
-            { key:'fence', mineduration:2, drop:[ { id:0, chance:1, quantity:2, chanceDivided:true } ], interaction:null, adaptive:[0,1,2,3,4,5,6]},
-            { key:'campfire', mineduration:2, drop:[ { id:0, chance:1, quantity:2, chanceDivided:false } ], interaction:'Cooking'},
+            { key:'tree', solid:true, mineduration:2, drop:[ { id:0, chance:1, quantity:2, chanceDivided:true } ], interaction:null},
+            { key:'bush', solid:true, mineduration:1, drop:[ { id:0, chance:1, quantity:1, chanceDivided:false } ], interaction:null},
+            { key:'stone_ore', solid:true, mineduration:3, drop:[ { id:1, chance:1, quantity:1, chanceDivided:false } ], interaction:null},
+            { key:'coal_ore', solid:true, mineduration:4, drop:[ { id:2, chance:1, quantity:3, chanceDivided:true } ], interaction:null},
+            { key:'fence', solid:true, mineduration:2, drop:[ { id:0, chance:1, quantity:2, chanceDivided:true } ], interaction:null, adaptive:[0,1,2,3,4,5,6]},
+            { key:'campfire', solid:true, mineduration:2, drop:[ { id:0, chance:1, quantity:2, chanceDivided:false } ], interaction:'Cooking'},
         ]
 
         this.crafting = [
@@ -56,16 +56,29 @@ export class GameScene extends Phaser.Scene {
             { key:'raw_chicken', cookable:true, cooked_key:'cooked_chicken', cooked_id:4, cookingTime: 10000 },
             { key:'cooked_chicken', eatable:true, replenish:20, },
         ]
+        
         this.npc = []
         this.world = {
             x0y0:{ id:0, inView:false, src:undefined, function:null, body:{id:undefined} }
         }
 
         this.biomes = [
-            {key:'woods', chance:1, tiles:[{id:0,chance:0.15}, {id:5, chance:0.6}, {id:4, chance:0.15}, {id:6, chance:0.1}]},
-            {key:'plains', chance:2, tiles:[{id:0,chance:0.65}, {id:3, chance:0.2}, {id:6, chance:0.05}, {id:4, chance:0.05}, {id:5, chance:0.05}]},
-            {key:'lake', chance:1, tiles:[{id:1, chance:0.95}, {id:2, chance:0.05}]},
-            {key:'mountainous', chance:0.4, tiles:[{id:6, chance:0.7}, {id:0, chance:0.2}, {id:4, chance:0.1}]}
+            { 
+                key:'woods',
+                ground:[
+                    {id:1, chance:0.15}, 
+                    {id:2, chance:0.2}, 
+                    {id:0, chance:0.65},
+                ],
+                body: [
+
+                ]
+
+            },
+            { key:'desert', tiles:[{id:0,chance:0.15}, {id:5, chance:0.6}, {id:4, chance:0.15}, {id:6, chance:0.1}]},
+            { key:'plains', tiles:[{id:0,chance:0.65}, {id:3, chance:0.2}, {id:6, chance:0.05}, {id:4, chance:0.05}, {id:5, chance:0.05}]},
+            { key:'lake', tiles:[{id:1, chance:0.95}, {id:2, chance:0.05}]},
+            { key:'mountainous', tiles:[{id:6, chance:0.7}, {id:0, chance:0.2}, {id:4, chance:0.1}]}
         ]
         
     }
@@ -132,6 +145,7 @@ export class GameScene extends Phaser.Scene {
     
     update() { 
         this.checkWorld()
+        this.player.checkDepth()
        // this.player.checkPlayerPosition()
         this.npc.forEach(e=>e.movement())
     }
@@ -167,18 +181,16 @@ export class GameScene extends Phaser.Scene {
    
     generateWorld(x, y) {
         const key = 'x'+x.toString()+'y'+y.toString()
-        const val = perlin.noise.perlin2(x/20,y/20)+0.5
+        const noiseVal = perlin.noise.perlin2(x/20,y/20)+0.5
 
         let id
         let idBody 
-        if(val < 0.2) id = 1
-        else if(val < 0.25) id = 2
-        else {
-            if(Math.random() > 0.98) this.npc.push(new Animals(this, x*96, y*96, 0))  
-            id = 0
-            if(Math.random() < val-0.25) idBody = 0
-        }
 
+        if(noiseVal < 0.2) id = 1
+        else if(noiseVal < 0.25) id = 2
+        else if(noiseVal < 0.45) id = 0
+        else idBody = 0, id = 0
+        
         this.world[key] = {id:id, inView: true, body:{id:idBody}}
         this.renderWorld(x, y, this.world[key])
     }
@@ -192,13 +204,13 @@ export class GameScene extends Phaser.Scene {
     renderWorld(x, y, world) { 
         world.src = this.add.image(x*96, y*96, this.ground[world.id].key).setDepth(-1)
         this.ground[world.id].group.add(world.src)
-        if (world.body.id > -1) {
-            console.log(world.body.id)
-            world.body.src = this.add.image(x*96, y*96, this.body[world.body.id].key).setDepth(0)
-            this.physics.add.existing(world.body.src)
-            world.body.src.body.debugShowBody = false
-            world.body.src.body.setImmovable(true)
+        if (world.body.id != undefined) {
+            world.body.src = this.add.image(x*96, y*96, this.body[world.body.id].key).setDepth(2)   
             if (this.body[world.body.id].solid) {
+                this.physics.add.existing(world.body.src)
+                world.body.src.body.debugShowBody = false 
+                world.body.src.body.setImmovable(true)
+                world.body.src.body.setSize(50,25)
                 this.solid.add(world.body.src)
                 world.body.src.setInteractive()
                 world.body.src.on('pointerdown', (e) => this.player.gather(x, y, this.body[world.body.id]))
