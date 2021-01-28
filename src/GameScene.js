@@ -3,8 +3,8 @@
 import animations from './data/animations.json'
 import images from './data/images'
 import spritesheets from './data/spritesheets.js'
-import { Animals } from './game_objects/animals'
-import { Player } from './game_objects/player'
+import { Animals } from './classes/animals'
+import { Player } from './classes/player'
 import perlin from './perlin.js'
 import Cooking from './ui/cooking'
 
@@ -20,66 +20,55 @@ export class GameScene extends Phaser.Scene {
             coords:null, 
         }
 
-        this.naturalTile = [0,1,2,3,4,5,6,8]
+        this.naturalStructures = [0,1,2,3,4,5,6,8]
 
-        this.animals = [
-            {key:'chicken', drop:[{ id: 3, chance: 1, quantity: 1, chanceDivided: false}]},
-            {key:'cow', drop:[{ id: 3, chance: 1, quantity: 1, chanceDivided: false}]},
-            {key:'pig', drop:[{ id: 3, chance: 1, quantity: 1, chanceDivided: false}]},
-            {key:'sheep', drop:[{ id: 3, chance: 1, quantity: 1, chanceDivided: false}]},
-        ]
-
-        this.ground = [
-            { key:'grass', swimmable:false },
-            { key:'water', swimmable:true },
-            { key:'sand', swimmable:false },
-        ]
-
-        this.body = [
-            { key:'tree', solid:true, mineduration:2, drop:[ { id:0, chance:1, quantity:2, chanceDivided:true } ], interaction:null},
-            { key:'bush', solid:true, mineduration:1, drop:[ { id:0, chance:1, quantity:1, chanceDivided:false } ], interaction:null},
-            { key:'stone_ore', solid:true, mineduration:3, drop:[ { id:1, chance:1, quantity:1, chanceDivided:false } ], interaction:null},
-            { key:'coal_ore', solid:true, mineduration:4, drop:[ { id:2, chance:1, quantity:3, chanceDivided:true } ], interaction:null},
-            { key:'fence', solid:true, mineduration:2, drop:[ { id:0, chance:1, quantity:2, chanceDivided:true } ], interaction:null, adaptive:[0,1,2,3,4,5,6]},
-            { key:'campfire', solid:true, mineduration:2, drop:[ { id:0, chance:1, quantity:2, chanceDivided:false } ], interaction:'Cooking'},
-        ]
-
-        this.crafting = [
-            { key:'campfire', tile:true, cost:[{id:0,amount:1}] },
-            { key:'fence', tile:true, cost:[{id:0,amount:2}] },
-        ]
-
-        this.items = [
-            { key:'wood' },
-            { key:'stone' },
-            { key:'coal' },
-            { key:'raw_chicken', cookable:true, cooked_key:'cooked_chicken', cooked_id:4, cookingTime: 10000 },
-            { key:'cooked_chicken', eatable:true, replenish:20, },
-        ]
-        
-        this.npc = []
-        this.world = {
-            x0y0:{ id:0, inView:false, src:undefined, function:null, body:{id:undefined} }
+        this.animals = {
+            0:{ key:'chicken', drop:[{ id: 3, chance: 1, quantity: 1, chanceDivided: false}]},
+            1:{ key:'cow', drop:[{ id: 3, chance: 1, quantity: 1, chanceDivided: false}]},
+            2:{ key:'pig', drop:[{ id: 3, chance: 1, quantity: 1, chanceDivided: false}]},
+            3:{ key:'sheep', drop:[{ id: 3, chance: 1, quantity: 1, chanceDivided: false}]},
         }
 
-        this.biomes = [
-            { 
-                key:'woods',
-                ground:[
-                    {id:1, chance:0.15}, 
-                    {id:2, chance:0.2}, 
-                    {id:0, chance:0.65},
-                ],
-                body: [
+        this.tiles = {
+            0:{ key:'grass', swimmable:false },
+            1:{ key:'water', swimmable:true },
+            2:{ key:'sand', swimmable:false },
+        }
 
-                ]
+        this.structures = {
+            0:{ key:'tree', solid:true, mineduration:2, drop:[ { id:0, chance:1, quantity:2, chanceDivided:true } ],},
+            1:{ key:'bush', solid:true, mineduration:1, drop:[ { id:0, chance:1, quantity:1, chanceDivided:false } ],},
+            2:{ key:'stone_ore', solid:true, mineduration:3, drop:[ { id:1, chance:1, quantity:1, chanceDivided:false } ],},
+            3:{ key:'coal_ore', solid:true, mineduration:4, drop:[ { id:2, chance:1, quantity:3, chanceDivided:true } ],},
+            4:{ key:'fence', solid:true, mineduration:2, drop:[ { id:0, chance:1, quantity:2, chanceDivided:true } ], adaptive:[0,1,2,3,4,5,6]},
+            5:{ key:'campfire', solid:true, mineduration:2, drop:[ { id:0, chance:1, quantity:2, chanceDivided:false } ], interaction:'Cooking'},
+        }
 
-            },
-            { key:'desert', tiles:[{id:0,chance:0.15}, {id:5, chance:0.6}, {id:4, chance:0.15}, {id:6, chance:0.1}]},
-            { key:'plains', tiles:[{id:0,chance:0.65}, {id:3, chance:0.2}, {id:6, chance:0.05}, {id:4, chance:0.05}, {id:5, chance:0.05}]},
-            { key:'lake', tiles:[{id:1, chance:0.95}, {id:2, chance:0.05}]},
-            { key:'mountainous', tiles:[{id:6, chance:0.7}, {id:0, chance:0.2}, {id:4, chance:0.1}]}
-        ]
+        this.crafts = {
+            0:{ key:'campfire', tile:true, cost:[{id:0,amount:1}] },
+            1:{ key:'fence', tile:true, cost:[{id:0,amount:2}] },
+        }
+
+        this.items = {
+            0:{ key:'wood' },
+            1:{ key:'stone' },
+            2:{ key:'coal' },
+            3:{ key:'raw_chicken', cookable:true, cooked_key:'cooked_chicken', cooked_id:4, cookingTime: 10000 },
+            4:{ key:'cooked_chicken', eatable:true, replenish:20, },
+        }
+        
+        this.world = {
+            x0y0: { 
+                inView: false, 
+                tile: {
+                    id: 0,
+                    src: undefined,
+                }
+            }
+        }
+        
+        this.npc = []
+        this.biomes = []
         
     }
 
@@ -101,13 +90,12 @@ export class GameScene extends Phaser.Scene {
 
     create() {
         // create noise seed
-        perlin.noise.seed(Math.random())
+        perlin.noise.seed(Math.random())  
         // create groups for each tile and animals
-        this.ground.forEach(e => e.group = this.add.group({classType: Phaser.GameObjects.Image}))
-        this.animals.forEach(e => e.group = this.add.group({classType: Phaser.GameObjects.Image}))
-        
+        Object.values(this.tiles).forEach(e => e.group = this.add.group({classType: Phaser.GameObjects.Image}))
+        Object.values(this.structures).forEach(e => e.group = this.add.group({classType: Phaser.GameObjects.Image}))
+        Object.values(this.animals).forEach(e => e.group = this.add.group({classType: Phaser.GameObjects.Image}))
         this.solid = this.add.group({classType: Phaser.GameObjects.Image})
-        
         // create all the animations
         this.animations.forEach(e => this.animationsCreate(e.name, e.skin, e.key, e.repeat, e.rate))
         // creates the player object
@@ -129,13 +117,11 @@ export class GameScene extends Phaser.Scene {
         this.cameras.main.startFollow(this.player)
         // if tile is breakable, you cant walk through it
         this.physics.add.collider(this.solid, this.player, null, null, this)
-        // this.tile.forEach(e=>{if (e.breakable) this.physics.add.collider(e.group, this.player, null, null, this)})
-        this.animals.forEach(e=>this.physics.add.collider(e.group, this.player, (animal)=>animal.setDrag(500,500), null, this))
-        this.animals.forEach(e=>{
-            // this.tile.forEach(t=>{
-            //     if(t.breakable || t.swimmable)this.physics.add.collider(e.group, t.group, null, null, this)
-            // })
-            this.animals.forEach(a=>{
+        Object.values(this.animals).forEach(e => this.physics.add.collider(e.group, this.player, (animal)=>animal.setDrag(500,500), null, this))
+        Object.values(this.animals).forEach(e => {
+            this.physics.add.collider(this.solid, e.group, null, null, this)
+            this.physics.add.collider(this.tiles[1].group, e.group, null, null, this)
+            Object.values(this.animals).forEach(a => {
                 this.physics.add.collider(e.group, a.group, null, null, this)
             })
         })
@@ -145,8 +131,8 @@ export class GameScene extends Phaser.Scene {
     
     update() { 
         this.checkWorld()
-        this.player.checkDepth()
-       // this.player.checkPlayerPosition()
+        // this.player.checkDepth()
+        this.player.checkPlayerPosition()
         this.npc.forEach(e=>e.movement())
     }
 
@@ -161,11 +147,11 @@ export class GameScene extends Phaser.Scene {
             dropAmount = Math.ceil(rand/(1/obj.quantity)) 
         }
         for(let i = 0; i < dropAmount ; i++) {
-            const loot = this.add.image((x)*96+((Math.random()*48)-24), (y)*96+((Math.random()*48)-24), this.items[obj.id].key).setDepth(-1)
+            const loot = this.add.image((x)*96+((Math.random()*48)-24), (y)*96+((Math.random()*48)-24), this.items[obj.id].key).setDepth(0)
             this.physics.add.existing(loot)
             loot.body.setSize(20,20)
             loot.body.debugShowBody = false
-            this.physics.add.overlap(this.player, loot, () => {this.player.bag.add(obj.id), loot.destroy()}, this.player.bag.canPickUp, this)
+            this.physics.add.overlap(this.player, loot, () => {this.player.bag.add(obj.id), loot.destroy()}, () => this.player.bag.canPickUp(), this)
         }
     }
 
@@ -183,15 +169,15 @@ export class GameScene extends Phaser.Scene {
         const key = 'x'+x.toString()+'y'+y.toString()
         const noiseVal = perlin.noise.perlin2(x/20,y/20)+0.5
 
-        let id
-        let idBody 
+        let idTile
+        let idStruct
 
-        if(noiseVal < 0.2) id = 1
-        else if(noiseVal < 0.25) id = 2
-        else if(noiseVal < 0.45) id = 0
-        else idBody = 0, id = 0
-        
-        this.world[key] = {id:id, inView: true, body:{id:idBody}}
+        if(noiseVal < 0.2) idTile = 1
+        else if(noiseVal < 0.25) idTile = 2
+        else if(noiseVal < 0.45) idTile = 0
+        else idStruct = 0, idTile = 0
+        this.world[key] = {inView: true, tile: { id: idTile }}
+        if (idStruct !== undefined) this.world[key].structure = { id: idStruct }
         this.renderWorld(x, y, this.world[key])
     }
 
@@ -202,28 +188,39 @@ export class GameScene extends Phaser.Scene {
     }
 
     renderWorld(x, y, world) { 
-        world.src = this.add.image(x*96, y*96, this.ground[world.id].key).setDepth(-1)
-        this.ground[world.id].group.add(world.src)
-        if (world.body.id != undefined) {
-            world.body.src = this.add.image(x*96, y*96, this.body[world.body.id].key).setDepth(2)   
-            if (this.body[world.body.id].solid) {
-                this.physics.add.existing(world.body.src)
-                world.body.src.body.debugShowBody = false 
-                world.body.src.body.setImmovable(true)
-                world.body.src.body.setSize(50,25)
-                this.solid.add(world.body.src)
-                world.body.src.setInteractive()
-                world.body.src.on('pointerdown', (e) => this.player.gather(x, y, this.body[world.body.id]))
+        const tile = world.tile
+        tile.src = this.add.image(x*96, y*96, this.tiles[tile.id].key).setDepth(-1)
+        // unsure of this
+        this.tiles[tile.id].group.add(tile.src)
+        // if tile has structure handle it here
+        if (world.structure !== undefined) {
+            const struct = world.structure
+            struct.src = this.add.image(x*96, y*96, this.structures[struct.id].key).setDepth(2)  
+            // struct is solid, can't walk through it!
+            if (this.structures[struct.id].solid) {
+                this.physics.add.existing(struct.src)
+                struct.src.body.debugShowBody = false 
+                struct.src.body.setImmovable(true)
+                struct.src.body.setSize(50,25)
+                this.solid.add(struct.src)
             }
-            world.body.interaction = this.bodyFunction(this.body[world.body.id].interaction)
+            // struct is mineable, you can gather from it!
+            if (this.structures[struct.id].mineduration !== undefined) {
+                struct.src.setInteractive()  
+                struct.src.on('pointerdown', (e) => this.player.gather(x, y, this.structures[struct.id]))
+            }
+            // struct has an interaction, you can interact with it!
+            if (this.structures[struct.id].interaction !== undefined) {
+                struct.interaction = this.setInteraction(this.structures[struct.id].interaction)
+            }
         }
     }
 
-    bodyFunction(constructor_name) {
-        if(constructor_name == 'Cooking') return new Cooking(this)
+    setInteraction(constructorName) {
+        if(constructorName == 'Cooking') return new Cooking(this)
     }
 
-    tileAdaptive(x,y,id) {
+    tileAdaptive(x, y, id) {
        
         const top = this.world['x'+x+'y'+(y-1)].id == id
         const bottom = this.world['x'+x+'y'+(y+1)].id == id

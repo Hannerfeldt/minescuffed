@@ -55,34 +55,47 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     checkPlayerPosition() {
-        const key = 'x'+Math.round(this.x/96)+'y'+Math.round(this.y/96) 
+        const x = Math.round(this.x/96)
+        const y = Math.round(this.y/96)
+        const key = 'x'+x+'y'+y
         this.scene.ui.coords.text = key
-        if (this.scene.tile[this.scene.world[key].id].swimmable && !this.swimming) {
+        // if we should be swimming or not
+        if (this.scene.tiles[this.scene.world[key].tile.id].swimmable && !this.swimming) {
             this.swimming = true
             this.canGather = false
             this.setVelocity(this.inputs[this.facing].direction.x/2,this.inputs[this.facing].direction.y/2)
             this.anims.play(this.inputs[this.facing].swimming)
         }
-        else if (!this.scene.tile[this.scene.world[key].id].swimmable && this.swimming) {
+        else if (!this.scene.tiles[this.scene.world[key].tile.id].swimmable && this.swimming) {
             this.swimming = false
             this.canGather = true
             this.setVelocity(this.inputs[this.facing].direction.x,this.inputs[this.facing].direction.y)
             this.anims.play(this.inputs[this.facing].running)
         }
+        // close profession window if too far away
         if (this.profession) {
-            const x_dir = (Math.round(this.x/96) + 1 == this.profession.x || Math.round(this.x/96) - 1 == this.profession.x) && Math.round(this.y/96) == this.profession.y
-            const y_dir = (Math.round(this.y/96) + 1 == this.profession.y || Math.round(this.y/96) - 1 == this.profession.y) && Math.round(this.x/96) == this.profession.x
+            const x_dir = (x + 1 == this.profession.x || x - 1 == this.profession.x) && y == this.profession.y
+            const y_dir = (y + 1 == this.profession.y || y - 1 == this.profession.y) && x == this.profession.x
             if (!x_dir && !y_dir) this.profession.close()
         }
-        //this.hunger.drain()
+        // set depth for structures, either 0 or 2
+        for (let i = 0; i < 4; i++) { 
+            let x_dir = x;
+            let y_dir = y;
+            i % 2 == 0 ?  x_dir += (i-1) : y_dir += (i-2)
+            if (!this.scene.world['x'+x_dir+'y'+y_dir]) return
+            this.checkDepth(x_dir, y_dir)
+        }
+        this.checkDepth(Math.round(this.x/96), Math.round(this.y/96))
     }
     
-    checkDepth() {
-        const key = 'x'+Math.round(this.x/96)+'y'+Math.round(this.y/96) 
-        if (this.scene.world[key].body.id != undefined) {
-            if(this.y > Math.round(this.y/96)*96) this.scene.world[key].body.src.setDepth(0)
-            else this.scene.world[key].body.src.setDepth(2)
-        }    
+    checkDepth(x, y) {
+        const key = 'x'+x+'y'+y
+        const struct = this.scene.world[key].structure
+        if(struct !== undefined) {
+            if(this.y > y*96) struct.src.setDepth(0)
+            else struct.src.setDepth(2)
+        }
     }
 
     movement(event) {
@@ -109,41 +122,43 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         x += Math.round(this.x/96)
         y += Math.round(this.y/96)
         //const tile = this.scene.tile[this.scene.world['x'+x+'y'+y].id]
-        const tile = this.scene.world['x'+x+'y'+y]
-        if(tile.function) { 
-            tile.function.x = x
-            tile.function.y = y
-            tile.function.open()
-            console.log(tile.function)
-            this.profession = tile.function 
+        const struct = this.scene.world['x'+x+'y'+y].struct
+        if(!struct) return
+        if(struct.interaction) { 
+            struct.interaction.x = x
+            struct.interaction.y = y
+            struct.interaction.open()
+            this.profession = struct.interaction
         }
     }
 
-    gather(x, y, obj) {
+    gather(x, y, struct) {
         if(!this.canGather) return
-        this.setVelocity(0,0)
+        this.setVelocity(0, 0)
 
-        const x_dir = (Math.round(this.x/96) + 1 == x || Math.round(this.x/96) - 1 == x) && Math.round(this.y/96) == y
-        const y_dir = (Math.round(this.y/96) + 1 == y || Math.round(this.y/96) - 1 == y) && Math.round(this.x/96) == x
+        const this_x = Math.round(this.x/96)
+        const this_y = Math.round(this.y/96)
+        const x_dir = ( this_x + 1 == x || this_x - 1 == x) && this_y == y
+        const y_dir = ( this_y + 1 == y || this_y - 1 == y) && this_x == x
         
         if (x_dir || y_dir) {
             this.anims.play('player_running_up')
             this.stunned = true
-            this.hunger.drain(2*obj.mineduration)
+            this.canGather = false
+            this.hunger.drain(2*struct.mineduration)
             const breaking = this.scene.add.sprite(x*96,y*96, 'breaking').setScale(0.7)
             breaking.anims.play('breaking_tile')
-            breaking.anims.msPerFrame =  obj.mineduration*(1000*this.gatheringSpeed)/3
+            breaking.anims.msPerFrame = struct.mineduration*(1000*this.gatheringSpeed)/3
             breaking.once('animationcomplete', () => breaking.destroy())
-            this.canGather = false
             setTimeout(()=> {
-                this.canGather = true
                 this.stunned = false
-                this.scene.world['x'+x+'y'+y].id = 0
-                this.scene.world['x'+x+'y'+y].src.destroy()
-                this.scene.renderWorld(x, y, this.scene.world['x'+x+'y'+y])
+                this.canGather = true
+                this.scene.world['x'+x+'y'+y].structure.src.destroy()
+                delete this.scene.world['x'+x+'y'+y].structure
+                // scene.renderWorld(x, y, scene.world['x'+x+'y'+y])
                 this.anims.pause()         
-                obj.drop.forEach(e => this.scene.drop(x, y, e))
-            }, obj.mineduration*(1000*this.gatheringSpeed))
+                struct.drop.forEach(e => this.scene.drop(x, y, e))
+            }, struct.mineduration*(1000*this.gatheringSpeed))
         }
     }
 
