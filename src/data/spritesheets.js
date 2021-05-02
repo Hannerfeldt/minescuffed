@@ -1,21 +1,30 @@
 module.exports = [{
     name: 'player',
-    source: require('../assets/player.png')
+    source: require('../assets/player/player.png')
 }, {
     name: 'breaking',
     source: require('../assets/breaking.png')
 }, {
     name: 'player_swimming',
-    source: require('../assets/player_swimming.png')
+    source: require('../assets/player/player_swimming.png')
 }, {
     name: 'player_eating',
-    source: require('../assets/player_eating.png')
+    source: require('../assets/player/player_eating.png')
 }, {
     name: 'player_attacking',
-    source: require('../assets/player_attacking.png')
+    source: require('../assets/player/player_attacking.png')
 }, {
-    name: 'fence',
-    source: require('../assets/fence.png')
+    name: 'chest',
+    source: require('../assets/chest/chest.png')
+}, {
+    name: 'legs',
+    source: require('../assets/legs/legs.png')
+}, {
+    name: 'campfire',
+    source: require('../assets/campfire.png')
+}, {
+    name: 'grass_border',
+    source: require('../assets/grass_border.png')
 }, {
     name: 'animals',
     source: require('../assets/animals.png')

@@ -30,8 +30,8 @@ export default class Hunger  {
     }
  
     draw() {
-        this.graphics.bar = this.scene.add.rectangle(50,650,200*(this.hunger/100), 40, 0x00aaaa).setScrollFactor(0,0).setOrigin(0)
-        this.graphics.text = this.scene.add.text(115,660,this.hunger+'%', {fontSize:'20px'}).setScrollFactor(0,0).setOrigin(0)
+        this.graphics.bar = this.scene.add.rectangle(50,650,200*(this.hunger/100), 40, 0x00aaaa).setScrollFactor(0,0).setOrigin(0).setDepth(10)
+        this.graphics.text = this.scene.add.text(115,660,this.hunger+'%', {fontSize:'20px'}).setScrollFactor(0,0).setOrigin(0).setDepth(10)
     }
     
     drain(amount) {

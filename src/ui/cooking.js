@@ -16,22 +16,22 @@ export default class Cooking  {
         const ADD = this.scene.add
         if(this.isOpen) return this.close()
         this.isOpen = true
-        this.graphics.background = ADD.rectangle(450,50,100,400,0xaaa55a).setScrollFactor(0,0).setOrigin(0)
+        this.graphics.background = ADD.rectangle(450,50,100,400,0xaaa55a).setScrollFactor(0,0).setOrigin(0).setDepth(10)
         const progressBarY = this.queue[0] ? this.queue[0].index : 0
-        this.graphics.progressBar = ADD.rectangle(465,115+(50*progressBarY),70*this.cookingProgress,7,0xffcc22).setScrollFactor(0).setOrigin(0)
+        this.graphics.progressBar = ADD.rectangle(465,115+(50*progressBarY),70*this.cookingProgress,7,0xffcc22).setScrollFactor(0).setOrigin(0).setDepth(10)
         this.finished.forEach(e => {
-            const text = ADD.text(460,80+((e.index)*50),'<-',{fontSize:'20px'}).setScrollFactor(0).setInteractive()
+            const text = ADD.text(460,80+((e.index)*50),'<-',{fontSize:'20px'}).setScrollFactor(0).setInteractive().setDepth(10)
             text.on('pointerdown', (event) => this.take(e))
             this.graphics.items.push({
-                image:ADD.image(500,95+((e.index)*50),this.scene.items[e.id].key).setScrollFactor(0).setScale(0.75).setOrigin(0.5),
+                image:ADD.image(500,95+((e.index)*50),this.scene.items[e.id].key).setScrollFactor(0).setScale(0.75).setOrigin(0.5).setDepth(10),
                 text:text
             })
         }) 
         this.queue.forEach(e => {
-            const text = ADD.text(460,80+((e.index)*50),'<-',{fontSize:'20px'}).setScrollFactor(0).setInteractive()
+            const text = ADD.text(460,80+((e.index)*50),'<-',{fontSize:'20px'}).setScrollFactor(0).setInteractive().setDepth(10)
             text.on('pointerdown', (event) => this.take(e))
             this.graphics.items.push({
-                image:ADD.image(500,95+((e.index)*50),this.scene.items[e.id].key).setScrollFactor(0).setScale(0.75).setOrigin(0.5),
+                image:ADD.image(500,95+((e.index)*50),this.scene.items[e.id].key).setScrollFactor(0).setScale(0.75).setOrigin(0.5).setDepth(10),
                 text:text
             })
         })
@@ -60,8 +60,8 @@ export default class Cooking  {
         const reduced = bag.reduce(item.id,1)
         if (!reduced) return
         const ADD = this.scene.add
-        const image = ADD.image(500,95+((this.graphics.items.length)*50), this.scene.items[item.id].key).setScrollFactor(0).setScale(0.75).setOrigin(0.5)
-        const text = ADD.text(460,80+((this.graphics.items.length)*50),'<-',{fontSize:'20px'}).setScrollFactor(0).setInteractive()
+        const image = ADD.image(500,95+((this.graphics.items.length)*50), this.scene.items[item.id].key).setScrollFactor(0).setScale(0.75).setOrigin(0.5).setDepth(10)
+        const text = ADD.text(460,80+((this.graphics.items.length)*50),'<-',{fontSize:'20px'}).setScrollFactor(0).setInteractive().setDepth(10)
         text.on('pointerdown', (event) => this.take(e))
         this.graphics.items.push({image:image,text:text})
         this.queue.push({id:item.id, index:this.graphics.items.length-1})
@@ -69,7 +69,7 @@ export default class Cooking  {
     }
 
     cooking(id, index) {
-
+        this.scene.world['x'+this.x+'y'+this.y].structure.src.anims.play('burning')
         const food = this.scene.items[id]
         let timeCooked = 0 
         const cookingInterval = setInterval(()=>{
@@ -82,6 +82,7 @@ export default class Cooking  {
                 this.finished.push({id:this.scene.items[cookedFood.id].cooked_id, index:cookedFood.index})
                 this.cookingProgress = 0
                 if (this.queue[0]) this.cooking(this.queue[0].id, this.queue[0].index)
+                else this.scene.world['x'+this.x+'y'+this.y].structure.src.anims.play('not_burning')
             }
             if (this.isOpen) this.update()
         }, 500)

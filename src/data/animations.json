@@ -1,25 +1,25 @@
 [{
     "name": "player_running_down",
     "skin": "player",
-    "key": [0, 1, 2, 3],
+    "key": [0, 1, 2, 3, 4, 5],
     "repeat": -1,
     "rate": 12
 }, {
     "name": "player_running_right",
     "skin": "player",
-    "key": [4, 5, 6, 7],
+    "key": [6, 7, 8, 9, 10, 11],
     "repeat": -1,
     "rate": 12
 }, {
     "name": "player_running_up",
     "skin": "player",
-    "key": [8, 9, 10, 11],
+    "key": [12, 13, 14, 15, 16, 17],
     "repeat": -1,
     "rate": 12
 }, {
     "name": "player_running_left",
     "skin": "player",
-    "key": [12, 13, 14, 15],
+    "key": [18, 19, 20, 21, 22, 23],
     "repeat": -1,
     "rate": 12
 }, {
@@ -123,5 +123,65 @@
     "skin": "animals",
     "key": [6, 7],
     "repeat": -1,
+    "rate": 12
+},{
+    "name": "chest_running_down",
+    "skin": "chest",
+    "key": [0, 1, 2, 3, 4, 5],
+    "repeat": -1,
+    "rate": 12
+},{
+    "name": "chest_running_right",
+    "skin": "chest",
+    "key": [6, 7, 8, 9, 10, 11],
+    "repeat": -1,
+    "rate": 12
+},{
+    "name": "chest_running_up",
+    "skin": "chest",
+    "key": [12, 13, 14, 15, 16, 17],
+    "repeat": -1,
+    "rate": 12
+},{
+    "name": "chest_running_left",
+    "skin": "chest",
+    "key": [18, 19, 20, 21, 22, 23],
+    "repeat": -1,
+    "rate": 12
+},{
+    "name": "legs_running_down",
+    "skin": "legs",
+    "key": [0, 1, 2, 3, 4, 5],
+    "repeat": -1,
+    "rate": 12
+},{
+    "name": "legs_running_right",
+    "skin": "legs",
+    "key": [6, 7, 8, 9, 10, 11],
+    "repeat": -1,
+    "rate": 12
+},{
+    "name": "legs_running_up",
+    "skin": "legs",
+    "key": [12, 13, 14, 15, 16, 17],
+    "repeat": -1,
+    "rate": 12
+},{
+    "name": "legs_running_left",
+    "skin": "legs",
+    "key": [18, 19, 20, 21, 22, 23],
+    "repeat": -1,
+    "rate": 12
+},{
+    "name": "burning",
+    "skin": "campfire",
+    "key": [0, 1, 2, 3, 4],
+    "repeat": -1,
+    "rate": 6
+},{
+    "name": "not_burning",
+    "skin": "campfire",
+    "key": [5, 6, 7, 8, 9],
+    "repeat": 0,
     "rate": 12
 }]

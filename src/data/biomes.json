@@ -1,0 +1,125 @@
+{
+    "0": {
+        "name": "woods",
+        "clusters": [{
+            "name":"lake",
+            "multiplier": 0.05,
+            "layers": [{
+                "chance": 0.45,
+                "tile": [{
+                    "key": "water",
+                    "chance": 1
+                }]
+            }, {
+                "chance": 0.40,
+                "tile": [{
+                    "key": "sand",
+                    "chance": 1
+                }]
+            }, {
+                "chance": 0.39,
+                "tile": [{
+                    "key": "grass",
+                    "chance": 1
+                }]
+            }]
+        }, {
+            "name":"forest",
+            "multiplier": 0.2,
+            "layers": [{
+                "chance": 0.0,
+                "tile": [{
+                    "key": "grass",
+                    "chance": 1
+                }],
+                "struct": [{
+                    "key": "pinetree",
+                    "chance":0.9
+                }, {
+                    "key": "stone_moss",
+                    "chance": 0.91
+                }]
+            }]
+        }, {
+            "name":"grass",
+            "multiplier": 0.15,
+            "layers": [{
+                "chance": 0.4,
+                "tile": [{
+                    "key": "dirt",
+                    "chance": 1
+                }]
+            }, {
+                "chance": -1,
+                "tile": [{
+                    "key": "grass",
+                    "chance": 1
+                }]
+            }]
+        }]
+    },
+    "1": {
+        "name": "desert",
+        "clusters": [{
+            "name":"mountain",
+            "multiplier": 0.05,
+            "layers": [{
+                "chance": 0.30,
+                "tile": [{
+                    "key": "rock_front",
+                    "chance": 1
+                }]
+            }]
+        }, {
+            "name":"sand",
+            "multiplier": 0.15,
+            "layers": [{
+                "chance": -1,
+                "tile": [{
+                    "key": "sand",
+                    "chance": 1
+                }]
+            }]
+        }]
+    },
+    "2": {
+        "name": "savanna",
+        "clusters": [{
+            "name":"green patch",
+            "multiplier": 0.08,
+            "layers": [{
+                "chance": 0.5,
+                "tile": [{
+                    "key": "water",
+                    "chance": 1
+                }]
+            },  {
+                "chance": 0.3,
+                "tile": [{
+                    "key": "savanna_grass",
+                    "chance": 1
+                }],
+                "struct": [{
+                    "key": "savanna_tree",
+                    "chance": 0.35
+                }]
+            }, {
+                "chance": 0.2,
+                "tile": [{
+                    "key": "savanna_grass",
+                    "chance": 1
+                }]
+            }]
+        }, {
+            "name":"dry patch",
+            "multiplier": 0.15,
+            "layers": [{
+                "chance": -1,
+                "tile": [{
+                    "key": "dry_grass",
+                    "chance": 1
+                }]
+            }]
+        }]
+    }
+}
