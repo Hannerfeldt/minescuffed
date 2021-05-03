@@ -1,6 +1,6 @@
 module.exports = [{
-    name: 'player',
-    source: require('../assets/player/player.png')
+    name: 'player_running',
+    source: require('../assets/player/player_running.png')
 }, {
     name: 'breaking',
     source: require('../assets/breaking.png')

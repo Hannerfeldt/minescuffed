@@ -8,11 +8,11 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this)
         scene.physics.add.existing(this)
         this.name = name
-        this.setDepth(4)
-        this.speed =  500
+        this.setDepth(10)
+        this.speed = 300
         this.setSize(30, 50)
-        this.debugShowBody = true
-        this.debugShowVelocity = true
+        this.debugShowBody = false
+        this.debugShowVelocity = false
         this.stunned = false
         this.canGather = true
         this.swimming = false
@@ -30,28 +30,17 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.damage = 10
         this.hunger = new Hunger(this.scene)
         this.hunger.draw()
-        //this.setDrag(100,100)
         this.canSwing = true
         this.profession = null
-        this.gear = {
-            chest:{src: this.scene.add.sprite(this.x, this.y, 'chest').setTint(0xEA5489)},
-            legs:{src: this.scene.add.sprite(this.x, this.y, 'legs').setTint(0xBB9DA8)},
-        }
-        this.container = this.scene.add.container(0,0, [this, this.gear.chest.src, this.gear.legs.src])
-        this.scene.add.existing(this.container)
-        this.scene.physics.add.existing(this.container)
-        this.container.body.debugShowBody = true
-        this.container.body.debugShowVelocity = true
-        // this.container.setDepth(4).setScale(1)
     }
 
     attack(obj) {
-        const x_dir = (this.x+96 > obj.x && this.x-96 < obj.x)
-        const y_dir = (this.y+96 > obj.y && this.y-96 < obj.y)
+        const x_dir = (this.x + 96 > obj.x && this.x - 96 < obj.x)
+        const y_dir = (this.y + 96 > obj.y && this.y - 96 < obj.y)
 
         if(!this.canSwing || !x_dir || !y_dir) return
         this.hunger.drain(5)
-        this.setVelocity(0,0)
+        this.setVelocity(0, 0)
         this.stunned = true
         this.anims.play(this.inputs[this.facing].attack).once('animationcomplete', () => this.stunned = false)
         this.canSwing = false
@@ -110,23 +99,19 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     movement(event) {
-
         let input_key = (event.originalEvent.key).toUpperCase()
         const event_type = event.originalEvent.type
         if (this.stunned) return
         const button_held = Object.values(this.scene.keyboard).filter(e => (e.isDown && (e.keyCode == 87 || e.keyCode == 65 || e.keyCode == 83 || e.keyCode == 68)))
-        if (event_type == 'keyup' && button_held.length == 0) this.container.body.setVelocity(0,0), this.anims.pause(this.anims.currentAnim.frames[0]), this.gear.chest.src.anims.pause(this.gear.chest.src.anims.currentAnim.frames[0]),this.gear.legs.src.anims.pause(this.gear.legs.src.anims.currentAnim.frames[0])
+        if (event_type == 'keyup' && button_held.length == 0) this.setVelocity(0,0), this.anims.pause(this.anims.currentAnim.frames[0])
         else {
             if (event_type == 'keyup' && button_held.length > 0) input_key = button_held[0].originalEvent.key.toUpperCase()
             if (!this.swimming) {
-                this.container.body.setVelocity(this.inputs[input_key].direction.x, this.inputs[input_key].direction.y)
+                this.setVelocity(this.inputs[input_key].direction.x, this.inputs[input_key].direction.y)
             }
-            else this.container.body.setVelocity(this.inputs[input_key].direction.x/2, this.inputs[input_key].direction.y/2)
+            else this.setVelocity(this.inputs[input_key].direction.x/2, this.inputs[input_key].direction.y/2)
             this.facing = input_key
             this.anims.play(!this.swimming ? this.inputs[input_key].running : this.inputs[input_key].swimming )
-            this.gear.chest.src.anims.play( input_key === 'W' ? 'chest_running_up' : input_key === 'S' ? 'chest_running_down' : input_key === 'A' ? 'chest_running_left' : 'chest_running_right')
-            this.gear.legs.src.anims.play( input_key === 'W' ? 'legs_running_up' : input_key === 'S' ? 'legs_running_down' : input_key === 'A' ? 'legs_running_left' : 'legs_running_right')
-            this.anims.play()
         }
     }
 

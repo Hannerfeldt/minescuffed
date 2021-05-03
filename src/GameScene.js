@@ -611,12 +611,9 @@ export class GameScene extends Phaser.Scene {
             fontFamily: 'Courier',
             fontSize: '40px'
         }).setScrollFactor(0, 0).setDepth(10)
-
     }
 
-    makeKey(x, y) {
-        return 'x' + x + 'y' + y
-    }
+    
 
     update() {
         this.checkWorld()
