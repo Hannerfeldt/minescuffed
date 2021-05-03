@@ -7,22 +7,24 @@ import ContainerLitePlugin from 'phaser3-rex-plugins/plugins/containerlite-plugi
 
 
 let config = {
-    type: Phaser.Auto,
-    width: window.innerWidth,
-    height: window.innerHeight,
-    backgroundColor: 0x000000,
-    physics: {
-      default: 'arcade',
-      arcade: { debug: true }
-    },
-    plugins: {
-      global: [{
-          key: 'rexContainerLitePlugin',
-          plugin: ContainerLitePlugin,
-          start: true
-      }]
-    },
-    scene: [GameStartScene, GameSetting, GameScene]
+  type: Phaser.Auto,
+  width: window.innerWidth,
+  height: window.innerHeight,
+  backgroundColor: 0x000000,
+  physics: {
+    default: 'arcade',
+    arcade: { debug: true }
+  },
+  plugins: {
+    global: [{
+      key: 'rexContainerLitePlugin',
+      plugin: ContainerLitePlugin,
+      start: true
+    }]
+  },
+  scene: [GameStartScene, GameSetting, GameScene]
 }
 
 let game = new Phaser.Game(config);
+
+export { game as default }

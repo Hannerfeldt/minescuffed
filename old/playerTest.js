@@ -1,7 +1,7 @@
 import ContainerLite from 'phaser3-rex-plugins/plugins/containerlite.js';
-import Bag from '../ui/bag'
-import Crafting from '../ui/crafting'
-import Hunger from '../ui/hunger'
+import Bag from '../src/ui/bag'
+import Crafting from '../src/ui/crafting'
+import Hunger from '../src/ui/hunger'
 
 
 export class PlayerTest extends ContainerLite {
