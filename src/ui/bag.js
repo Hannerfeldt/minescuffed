@@ -82,6 +82,7 @@ export default class Bag  {
     }
 
     canPickUp() {
+        console.log('check')
         return this.items.length < 10
     }
 }

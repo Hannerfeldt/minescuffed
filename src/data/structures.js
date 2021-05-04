@@ -240,8 +240,8 @@ module.exports = {
     'savanna_tree': {
         key: 'savanna_tree',
         solid: {
-            w: 30,
-            h: 25
+            w: 15,
+            h: 15
         },
         origin: {
             x: 0.5,

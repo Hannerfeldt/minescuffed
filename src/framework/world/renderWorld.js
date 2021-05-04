@@ -26,7 +26,7 @@ const renderWorld = (x, y, world) => {
             _this.physics.add.existing(struct.src, true)
             //struct.src.body.setImmovable(true)
             struct.src.body.setSize(_this.structures[struct.key].solid.w, _this.structures[struct.key].solid.h, true)
-            struct.src.body.setOffset(_this.structures[struct.key].offset.x, _this.structures[struct.key].offset.y)
+            // struct.src.body.setOffset(_this.structures[struct.key].offset.x, _this.structures[struct.key].offset.y)
             _this.solid.add(struct.src)
             struct.src.body.debugShowBody = false
         }

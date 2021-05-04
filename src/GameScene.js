@@ -184,27 +184,6 @@ export class GameScene extends Phaser.Scene {
         this.npc.forEach(e => e.movement())
     }
 
-    drop(x, y, obj) {
-        // if it dropped or not
-        if (Math.random() > obj.chance) return
-        // chance per quantity
-        let dropAmount = obj.quantity
-        if (obj.chanceDivided) {
-            let rand = Math.random()
-            rand = rand == 0 ? 0.0000001 : rand
-            dropAmount = Math.ceil(rand / (1 / obj.quantity))
-        }
-        for (let i = 0; i < dropAmount; i++) {
-            const loot = this.add.image((x) * 96 + ((Math.random() * 48) - 24), (y) * 96 + ((Math.random() * 48) - 24), this.items[obj.key].key).setDepth(0)
-            this.physics.add.existing(loot)
-            loot.body.setSize(20, 20)
-            loot.body.debugShowBody = false
-            this.physics.add.overlap(this.player, loot, () => {
-                this.player.bag.add(obj.key), loot.destroy()
-            }, () => this.player.bag.canPickUp(), this)
-        }
-    }
-
     setInteraction(constructorName) {
         if (constructorName == 'Cooking') return new Cooking(this)
     }

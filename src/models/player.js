@@ -2,7 +2,7 @@ import Bag from '../ui/bag'
 import Crafting from '../ui/crafting'
 import Hunger from '../ui/hunger'
 import makeKey from '../framework/makeKey'
-
+import drop from '../framework/drop'
 
 export class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, name){
@@ -12,7 +12,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.name = name
         this.setDepth(10)
         this.speed = 300
+        this.setOrigin(0.5)
         this.setSize(30, 50)
+        this.setOffset(33, 25)
         this.debugShowBody = false
         this.debugShowVelocity = false
         this.stunned = false
@@ -50,7 +52,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.canSwing = false
         obj.health -= this.damage
         if (obj.health <= 0) {
-            this.scene.animals[obj.id].drop.forEach(e=> this.scene.drop(Math.round(obj.x/96), Math.round(obj.y/96), e))
+            this.scene.animals[obj.id].drop.forEach(e => drop(Math.round(obj.x/96), Math.round(obj.y/96), e))
             obj.kill()
         }
         setTimeout(()=> this.canSwing = true, 1000)
@@ -148,7 +150,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                 delete this.scene.world['x' + x + 'y' + y].structure
                 // scene.renderWorld(x, y, scene.world['x'+x+'y'+y])
                 this.anims.pause(this.anims.currentAnim.frames[0])
-                struct.drop.forEach(e => this.scene.drop(x, y, e))
+                struct.drop.forEach(e => drop(x, y, e))
             }, struct.mineduration * (1000 * this.gatheringSpeed))
         }
     }
