@@ -2,8 +2,6 @@ import Phaser from "phaser";
 import { GameStartScene } from "./GameStartScene";
 import { GameSetting } from "./GameSetting";
 import { GameScene } from "./GameScene";
-import { GameOverScene } from "./GameOverScene";
-
 
 let config = {
   type: Phaser.Auto,

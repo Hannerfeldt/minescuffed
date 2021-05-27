@@ -19,6 +19,10 @@ module.exports = [{
         source: require('../assets/stone_ore.png')
     },
     {
+        name: 'sapling',
+        source: require('../assets/sapling.png')
+    },
+    {
         name: 'stone_ore2',
         source: require('../assets/stone_ore2.png')
     },

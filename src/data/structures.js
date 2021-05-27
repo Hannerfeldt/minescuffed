@@ -153,6 +153,11 @@ module.exports = {
             chance: 1,
             quantity: 2,
             chanceDivided: true
+        }, {
+            key: 'sapling',
+            chance: 0.5,
+            quantity: 1,
+            chanceDivided: false
         }],
     },
     'stone_ore2': {

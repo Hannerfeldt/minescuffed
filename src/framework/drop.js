@@ -12,8 +12,8 @@ const drop = (x, y, obj) => {
         rand = rand == 0 ? 0.0000001 : rand
         dropAmount = Math.ceil(rand / (1 / obj.quantity))
     }
+    
     for (let i = 0; i < dropAmount; i++) {
-
         const loot = addImage(x * 96 + ((Math.random() * 48) - 24), (y) * 96 + ((Math.random() * 48) - 24), _this.items[obj.key].key, 0)
         _this.physics.add.existing(loot)
         loot.body.setSize(20, 20)

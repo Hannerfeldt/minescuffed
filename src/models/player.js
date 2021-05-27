@@ -1,4 +1,4 @@
-import Bag from '../ui/bag'
+import Bag from './bag'
 import Crafting from '../ui/crafting'
 import Hunger from '../ui/hunger'
 import makeKey from '../framework/makeKey'
@@ -22,11 +22,11 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.swimming = false
         this.gatheringSpeed = 0.2
         this.inputs = {
-            W: { direction: { x:0, y:-this.speed }, attack:'player_attacking_up',    eating:'player_eating_up',    running: 'player_running_up',    swimming: 'player_swimming_up'},
-            A: { direction: { x:-this.speed, y:0 }, attack:'player_attacking_left',  eating:'player_eating_left',  running: 'player_running_left',  swimming: 'player_swimming_left'},
-            S: { direction: { x:0, y:this.speed },  attack:'player_attacking_down',  eating:'player_eating_down',  running: 'player_running_down',  swimming: 'player_swimming_down'},
-            D: { direction: { x:this.speed, y:0 },  attack:'player_attacking_right', eating:'player_eating_right', running: 'player_running_right', swimming: 'player_swimming_right'},
-            STOP: { direction: { x:0, y:0 }, running: undefined},
+            W: { direction: { x: 0, y: -this.speed }, attack: 'player_attacking_up',    eating: 'player_eating_up',    running: 'player_running_up',    swimming: 'player_swimming_up' },
+            A: { direction: { x: -this.speed, y: 0 }, attack: 'player_attacking_left',  eating: 'player_eating_left',  running: 'player_running_left',  swimming: 'player_swimming_left' },
+            S: { direction: { x: 0, y: this.speed },  attack: 'player_attacking_down',  eating: 'player_eating_down',  running: 'player_running_down',  swimming: 'player_swimming_down' },
+            D: { direction: { x: this.speed, y: 0 },  attack: 'player_attacking_right', eating: 'player_eating_right', running: 'player_running_right', swimming: 'player_swimming_right' },
+            STOP: { direction: { x: 0, y: 0 }, running: undefined},
         }
         this.bag = new Bag(this.scene)
         this.crafting = new Crafting(this.scene)

@@ -8,12 +8,8 @@ import crafts from './data/crafts'
 import structures from './data/structures'
 import biomes from './data/biomes'
 import makeKey from './framework/makeKey'
-import {
-    Animals
-} from './models/animals'
-import {
-    Player
-} from './models/player'
+import { Animals } from './models/animals'
+import { Player } from './models/player'
 import perlin from './perlin.js'
 import Cooking from './ui/cooking'
 
@@ -145,7 +141,7 @@ export class GameScene extends Phaser.Scene {
         this.keyboard.A.on('up', e => this.player.movement(e))
         this.keyboard.S.on('up', e => this.player.movement(e))
         this.keyboard.D.on('up', e => this.player.movement(e))
-        this.keyboard.B.on('down', e => this.player.bag.open())
+        this.keyboard.B.on('down', e => this.player.bag.openOrClose())
         this.keyboard.E.on('down', e => this.player.crafting.open())
         this.keyboard.F.on('down', e => this.player.hunger.eating())
         this.keyboard.SPACE.on('down', e => this.player.interact())

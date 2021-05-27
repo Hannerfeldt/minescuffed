@@ -46,16 +46,17 @@ export default class Crafting {
         this.graphics.background.destroy()
         this.graphics.items.forEach(e => {
             e.text.destroy(),
-                e.image.destroy(),
-                e.build.destroy(),
-                e.costs.forEach(c => {
-                    c.text.destroy(),
-                        c.image.destroy()
-                })
+            e.image.destroy(),
+            e.build.destroy(),
+            e.costs.forEach(c => {
+                c.text.destroy(),
+                c.image.destroy()
+            })
         })
     }
 
     canBuild(craft) {
+        console.log('canBuild')
         let cost_array = []
         let canAfford = true
         craft.cost.forEach((e) => {
@@ -70,6 +71,7 @@ export default class Crafting {
     }
 
     build(craft, cost_array) {
+        console.log('build')
         this.close()
         const blueprint_img = this.scene.add.image(0, 0, craft.key).setDepth(3).setBlendMode('SCREEN').setTint(0xfff00f)
         if (craft.rotations) {
@@ -89,10 +91,10 @@ export default class Crafting {
             const key = 'x' + Math.round(e.worldX / 96) + 'y' + Math.round(e.worldY / 96)
             if ((!x_dir && !y_dir) || (this.scene.world[key].structure)) blueprint_img.setTint(0xff5565)
             else blueprint_img.setTint(0xfff00f)
-
         }
 
         const placeBuilding = (e) => {
+            console.log('placeBuilding')
             const player = this.scene.player
             const x_dir = (Math.round(player.x / 96) + 1 == Math.round(e.worldX / 96) || Math.round(player.x / 96) - 1 == Math.round(e.worldX / 96)) && Math.round(player.y / 96) == Math.round(e.worldY / 96)
             const y_dir = (Math.round(player.y / 96) + 1 == Math.round(e.worldY / 96) || Math.round(player.y / 96) - 1 == Math.round(e.worldY / 96)) && Math.round(player.x / 96) == Math.round(e.worldX / 96)
@@ -109,13 +111,12 @@ export default class Crafting {
             blueprint_img.destroy()
 
             this.scene.renderWorld(Math.round(e.worldX / 96), Math.round(e.worldY / 96), this.scene.world[key])
-
             // if(this.scene.tile[id].adaptive) this.scene.tileAdaptive(Math.round(e.worldX/96), Math.round(e.worldY/96), id)
-
             cost_array.forEach(c => player.bag.reduce(c.key, c.cost))
         }
 
         this.scene.input.on('pointermove', followCursor)
+        console.log(this.scene.input.activePointer.isDown)
         this.scene.input.on('pointerdown', placeBuilding)
     }
 }
