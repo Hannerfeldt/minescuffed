@@ -21,6 +21,28 @@ module.exports = {
             chanceDivided: true
         }],
     },
+    'sapling': {
+        key: 'sapling',
+        solid: {
+            w: 30,
+            h: 25
+        },
+        origin: {
+            x: 0.5,
+            y: 1,
+        },
+        offset: {
+            x: 33,
+            y: 0.5,
+        },
+        mineduration: 1,
+        drop: [{
+            key: 'sapling',
+            chance: 1,
+            quantity: 1,
+            chanceDivided: false
+        }],
+    },
     'bush': {
         key: 'bush',
         mineduration: 1,

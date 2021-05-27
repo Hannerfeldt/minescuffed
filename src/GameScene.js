@@ -12,6 +12,7 @@ import { Animals } from './models/animals'
 import { Player } from './models/player'
 import perlin from './perlin.js'
 import Cooking from './ui/cooking'
+import Clock from './models/Clock'
 
 import checkWorld from './framework/world/checkWorld'
 
@@ -131,6 +132,8 @@ export class GameScene extends Phaser.Scene {
         //this.player = new Player(this, 0, 0, 30, 40, [this.add.sprite(0, 0, 'player'), this.add.sprite(0, 0, 'legs').setTint(0x9c8468), this.add.sprite(0, 0, 'chest').setTint(0x32a852)])
         this.player = new Player(this, 'knapp')
 
+        this.clock = new Clock()
+
         // adding listening events for keys
         this.keyboard = this.input.keyboard.addKeys('W, A, S, D, B, E, SPACE, F, R', false, false)
         this.keyboard.W.on('down', e => this.player.movement(e))
@@ -143,6 +146,7 @@ export class GameScene extends Phaser.Scene {
         this.keyboard.D.on('up', e => this.player.movement(e))
         this.keyboard.B.on('down', e => this.player.bag.openOrClose())
         this.keyboard.E.on('down', e => this.player.crafting.open())
+        // this.keyboard.F.on('down', e => this.clock.update())
         this.keyboard.F.on('down', e => this.player.hunger.eating())
         this.keyboard.SPACE.on('down', e => this.player.interact())
 
@@ -172,10 +176,15 @@ export class GameScene extends Phaser.Scene {
             fontFamily: 'Courier',
             fontSize: '40px'
         }).setScrollFactor(0, 0).setDepth(10)
+        this.timer = 0
     }
-
-    update() {
+    update(time, delta) {
         checkWorld(this)
+        this.timer += delta;
+        while (this.timer > 1000) {
+            this.clock.update()
+            this.timer -= 1000
+        }
         this.player.checkPlayerPosition()
         this.npc.forEach(e => e.movement())
     }

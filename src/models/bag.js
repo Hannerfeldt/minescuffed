@@ -38,7 +38,8 @@ export default class Bag {
             this.graphics.items[i] = {}
             const y = 105 + (i * 30) + (i * 5)
             this.graphics.items[i].background = createBackground(55, y - 5 , 340, 30, 0x666666)
-            if (e.use) this.graphics.items[i].background.setInteractive(), this.graphics.items[i].background.on('pointerdown', (event) => this.place({ key: e.parameter }, [{ key: e.parameter, cost: 1 }]))
+            if (e.use) this.graphics.items[i].background.setInteractive(), this.graphics.items[i].background.on('pointerdown',
+                (event) => index(e.use)(e.key))
             this.graphics.items[i].image = addImage(75, y, this.scene.items[e.key].key, 0.5, 0.2)
             this.graphics.items[i].text = addText(120, y, this.scene.items[e.key].key + ' ' + e.quantity)
             this.graphics.items[i].button = addText(350, y, '->')
@@ -46,60 +47,6 @@ export default class Bag {
             this.graphics.items[i].button.on('pointerdown', (event) => this.drop(e.key, event))
         })
     }
-
-    place(craft, costArray) {
-        console.log(this.scene)
-        this.scene.player.bag.close()
-        const blueprintImg = this.scene.add.image(0, 0, craft.key).setDepth(30).setBlendMode('SCREEN').setTint(0xfff00f)
-        // const blueprintImg = addImage(0, 0, craft.key, 0, 0, 3)
-        // blueprintImg.setBlendMode('SCREEN').setTint(0xfff00f)
-        if (craft.rotations) {
-            this.scene.keyboard.R.on('down', e => {
-                const index = craft.rotations.findIndex(e => e === blueprintImg.texture.key)
-                const texture = index + 1 === craft.rotations.length ? craft.rotations[0] : craft.rotations[index + 1]
-                blueprintImg.setTexture(texture)
-            })
-        }
-
-        const followCursor = (e) => {
-            const player = this.scene.player
-            blueprintImg.x = Math.round(e.worldX / 96) * 96
-            blueprintImg.y = Math.round(e.worldY / 96) * 96
-            const xDir = (Math.round(player.x / 96) + 1 == Math.round(e.worldX / 96) || Math.round(player.x / 96) - 1 === Math.round(e.worldX / 96)) && Math.round(player.y / 96) == Math.round(e.worldY / 96)
-            const yDir = (Math.round(player.y / 96) + 1 == Math.round(e.worldY / 96) || Math.round(player.y / 96) - 1 === Math.round(e.worldY / 96)) && Math.round(player.x / 96) == Math.round(e.worldX / 96)
-            const key = 'x' + Math.round(e.worldX / 96) + 'y' + Math.round(e.worldY / 96)
-            if ((!xDir && !yDir) || (this.scene.world[key].structure)) blueprintImg.setTint(0xff5565)
-            else blueprintImg.setTint(0xfff00f)
-        }
-
-        const placeBuilding = (e) => {
-            console.log('placeBuilding')
-            const player = this.scene.player
-            const xDir = (Math.round(player.x / 96) + 1 == Math.round(e.worldX / 96) || Math.round(player.x / 96) - 1 == Math.round(e.worldX / 96)) && Math.round(player.y / 96) == Math.round(e.worldY / 96)
-            const yDir = (Math.round(player.y / 96) + 1 == Math.round(e.worldY / 96) || Math.round(player.y / 96) - 1 == Math.round(e.worldY / 96)) && Math.round(player.x / 96) == Math.round(e.worldX / 96)
-
-            if (!xDir && !yDir) return
-            const key = 'x' + Math.round(e.worldX / 96) + 'y' + Math.round(e.worldY / 96)
-            if (this.scene.world[key].structure) return
-
-            this.scene.input.removeListener('pointerdown', placeBuilding)
-            this.scene.input.removeListener('pointermove', followCursor)
-            this.scene.world[key].structure = {}
-            this.scene.world[key].structure.key = blueprintImg.texture.key
-            if (craft.rotations) this.scene.keyboard.R.destroy()
-            blueprintImg.destroy()
-
-            this.scene.renderWorld(Math.round(e.worldX / 96), Math.round(e.worldY / 96), this.scene.world[key])
-            // if(this.scene.tile[id].adaptive) this.scene.tileAdaptive(Math.round(e.worldX/96), Math.round(e.worldY/96), id)
-            costArray.forEach(c => player.bag.reduce(c.key, c.cost))
-        }
-
-        this.scene.input.on('pointermove', followCursor)
-        console.log(this.scene.input.activePointer.isDown)
-        this.scene.input.on('pointerdown', placeBuilding)
-        setTimeout(() => console.log(this.scene.input.activePointer.isDown), 50)
-    }
-
 
     close() {
         this.isOpen = false

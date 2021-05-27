@@ -56,7 +56,6 @@ export default class Crafting {
     }
 
     canBuild(craft) {
-        console.log('canBuild')
         let cost_array = []
         let canAfford = true
         craft.cost.forEach((e) => {
@@ -71,7 +70,6 @@ export default class Crafting {
     }
 
     build(craft, cost_array) {
-        console.log('build')
         this.close()
         const blueprint_img = this.scene.add.image(0, 0, craft.key).setDepth(3).setBlendMode('SCREEN').setTint(0xfff00f)
         if (craft.rotations) {
@@ -94,7 +92,6 @@ export default class Crafting {
         }
 
         const placeBuilding = (e) => {
-            console.log('placeBuilding')
             const player = this.scene.player
             const x_dir = (Math.round(player.x / 96) + 1 == Math.round(e.worldX / 96) || Math.round(player.x / 96) - 1 == Math.round(e.worldX / 96)) && Math.round(player.y / 96) == Math.round(e.worldY / 96)
             const y_dir = (Math.round(player.y / 96) + 1 == Math.round(e.worldY / 96) || Math.round(player.y / 96) - 1 == Math.round(e.worldY / 96)) && Math.round(player.x / 96) == Math.round(e.worldX / 96)
@@ -116,7 +113,7 @@ export default class Crafting {
         }
 
         this.scene.input.on('pointermove', followCursor)
-        console.log(this.scene.input.activePointer.isDown)
+
         this.scene.input.on('pointerdown', placeBuilding)
     }
 }

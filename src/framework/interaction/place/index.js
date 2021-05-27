@@ -1,9 +1,9 @@
 import addImage from '../../ui/addImage'
 import game from '../../../index'
+import renderWorld from '../../world/renderWorld'
 
 const place = (craft, costArray) => {
     const _this = game.scene.scenes[2]
-    console.log(_this)
     _this.player.bag.close()
     const blueprintImg = _this.add.image(0, 0, craft.key).setDepth(30).setBlendMode('SCREEN').setTint(0xfff00f)
     // const blueprintImg = addImage(0, 0, craft.key, 0, 0, 3)
@@ -28,7 +28,6 @@ const place = (craft, costArray) => {
     }
 
     const placeBuilding = (e) => {
-        console.log('placeBuilding')
         const player = _this.player
         const xDir = (Math.round(player.x / 96) + 1 == Math.round(e.worldX / 96) || Math.round(player.x / 96) - 1 == Math.round(e.worldX / 96)) && Math.round(player.y / 96) == Math.round(e.worldY / 96)
         const yDir = (Math.round(player.y / 96) + 1 == Math.round(e.worldY / 96) || Math.round(player.y / 96) - 1 == Math.round(e.worldY / 96)) && Math.round(player.x / 96) == Math.round(e.worldX / 96)
@@ -44,15 +43,14 @@ const place = (craft, costArray) => {
         if (craft.rotations) _this.keyboard.R.destroy()
         blueprintImg.destroy()
 
-        _this.renderWorld(Math.round(e.worldX / 96), Math.round(e.worldY / 96), _this.world[key])
+        renderWorld(Math.round(e.worldX / 96), Math.round(e.worldY / 96), _this.world[key])
         // if(_this.tile[id].adaptive) _this.tileAdaptive(Math.round(e.worldX/96), Math.round(e.worldY/96), id)
         costArray.forEach(c => player.bag.reduce(c.key, c.cost))
     }
 
     _this.input.on('pointermove', followCursor)
-    console.log(_this.input.activePointer.isDown)
+    _this.input.activePointer.isDown = false
     _this.input.on('pointerdown', placeBuilding)
-    setTimeout(() => console.log(_this.input.activePointer.isDown), 50)
 }
 
 export { place as default }
