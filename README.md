@@ -57,7 +57,7 @@ Just the name of the biome.
 
 **Clusters** is an array of objects. You can think of a cluster as a *patch* or a *sub-biome* inside your biome.
 
->E.g you might wanna create a forest biome but you want a variety in the environment, like the chance of a lake appering or an open space without trees. Then you would add these *varieties* as an object inside clusters.
+>E.g you might wanna create a forest biome but you want variety in the environment, like the chance of a lake appering or an open space without trees. Then you would add these *varieties* as an object inside clusters.
 
 **Order is important, where index 1 overwrites index 0.**
 

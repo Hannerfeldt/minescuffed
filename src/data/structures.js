@@ -42,6 +42,13 @@ module.exports = {
             quantity: 1,
             chanceDivided: false
         }],
+        grow: [{
+            time: [0, 1, 0, 0, 0, 0],
+            key: 'bush'
+        },{
+            time: [0, 1, 0, 0, 0, 0],
+            key: 'pinetree'
+        }]
     },
     'bush': {
         key: 'bush',
