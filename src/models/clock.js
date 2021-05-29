@@ -15,11 +15,11 @@ export default class Clock {
 
     setAlarm(time, who) {
         let alarm = []
-        let carryOver = 0
         for (let i = 0; i < this.time.length; i++) {
-            if (this.time[i] + time[i] >= this.timeMax[i]) {
-                alarm[i] = (this.time[i] + time[i]) - this.timeMax[i]
-                carryOver = 1
+            if (this.time[i] + time[i] > this.timeMax[i]) {
+                const res = (this.timeMax[i] + 1) - this.time[i]
+                alarm[i] = time[i] - res
+                time[i + 1]++
             }
             else alarm[i] = time[i]
         }
