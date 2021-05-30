@@ -1,6 +1,6 @@
 import generateWorld from './generateWorld'
 import rememberWorld from './rememberWorld'
-import makeKey from '../makeKey'
+import makeKey from '../general/makeKey'
 
 const checkWorld = (_this) => {
     for (let col = Math.round(_this.cameras.main.worldView.left / 96); col < Math.round(_this.cameras.main.worldView.right / 96); col++) {

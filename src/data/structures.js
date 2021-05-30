@@ -16,9 +16,20 @@ module.exports = {
         mineduration: 2,
         drop: [{
             key: 'wood',
-            chance: 1,
-            quantity: 2,
-            chanceDivided: true
+            rate: [
+                {
+                    amount: 1,
+                    chance: 0.6,
+                },
+                {
+                    amount: 2,
+                    chance: 0.3,
+                },
+                {
+                    amount: 3,
+                    chance: 0.1,
+                },
+            ],
         }],
     },
     'sapling': {
@@ -42,7 +53,7 @@ module.exports = {
             quantity: 1,
             chanceDivided: false
         }],
-        grow: [{
+        alarm: [{
             time: [0, 1, 0, 0, 0, 0],
             key: 'bush'
         },{

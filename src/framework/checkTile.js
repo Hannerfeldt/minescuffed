@@ -1,4 +1,4 @@
-import makeKey from './makeKey'
+import makeKey from './general/makeKey'
 import game from '../index'
 
 const checkTile = (x, y) => {

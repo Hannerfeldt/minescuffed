@@ -79,84 +79,24 @@ module.exports = [{
         source: require('../assets/cactus.png')
     },
     {
-        name: 'sand_top',
-        source: require('../assets/borders/sand_top.png')
+        name: 'sand_border',
+        source: require('../assets/borders/sand_border.png')
     },
     {
-        name: 'sand_left',
-        source: require('../assets/borders/sand_left.png')
+        name: 'grass_border',
+        source: require('../assets/borders/grass_border.png')
     },
     {
-        name: 'sand_right',
-        source: require('../assets/borders/sand_right.png')
+        name: 'dry_grass_border',
+        source: require('../assets/borders/dry_grass_border.png')
     },
     {
-        name: 'sand_bottom',
-        source: require('../assets/borders/sand_bottom.png')
+        name: 'savanna_grass_border',
+        source: require('../assets/borders/savanna_grass_border.png')
     },
     {
-        name: 'grass_top',
-        source: require('../assets/borders/grass_top.png')
-    },
-    {
-        name: 'grass_left',
-        source: require('../assets/borders/grass_left.png')
-    },
-    {
-        name: 'grass_right',
-        source: require('../assets/borders/grass_right.png')
-    },
-    {
-        name: 'grass_bottom',
-        source: require('../assets/borders/grass_bottom.png')
-    },
-    {
-        name: 'dry_grass_top',
-        source: require('../assets/borders/dry_grass_top.png')
-    },
-    {
-        name: 'dry_grass_left',
-        source: require('../assets/borders/dry_grass_left.png')
-    },
-    {
-        name: 'dry_grass_right',
-        source: require('../assets/borders/dry_grass_right.png')
-    },
-    {
-        name: 'dry_grass_bottom',
-        source: require('../assets/borders/dry_grass_bottom.png')
-    },
-    {
-        name: 'savanna_grass_top',
-        source: require('../assets/borders/savanna_grass_top.png')
-    },
-    {
-        name: 'savanna_grass_left',
-        source: require('../assets/borders/savanna_grass_left.png')
-    },
-    {
-        name: 'savanna_grass_right',
-        source: require('../assets/borders/savanna_grass_right.png')
-    },
-    {
-        name: 'savanna_grass_bottom',
-        source: require('../assets/borders/savanna_grass_bottom.png')
-    },
-    {
-        name: 'rock_top',
-        source: require('../assets/borders/rock_top.png')
-    },
-    {
-        name: 'rock_left',
-        source: require('../assets/borders/rock_left.png')
-    },
-    {
-        name: 'rock_right',
-        source: require('../assets/borders/rock_right.png')
-    },
-    {
-        name: 'rock_bottom',
-        source: require('../assets/borders/rock_bottom.png')
+        name: 'rock_border',
+        source: require('../assets/borders/rock_border.png')
     },
     {
         name: 'rock_front',

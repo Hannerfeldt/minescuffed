@@ -23,6 +23,6 @@ export default class Clock {
             }
             else alarm[i] = time[i]
         }
-        this.alarms.push(alarm)
+        this.alarms.push({time: alarm, who})
     }
 }

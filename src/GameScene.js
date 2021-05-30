@@ -1,4 +1,3 @@
-//importing data
 import animations from './data/animations'
 import images from './data/images'
 import spritesheets from './data/spritesheets'
@@ -7,16 +6,15 @@ import tiles from './data/tiles'
 import crafts from './data/crafts'
 import structures from './data/structures'
 import biomes from './data/biomes'
-import makeKey from './framework/makeKey'
+import makeKey from './framework/general/makeKey'
 import { Animals } from './models/animals'
 import { Player } from './models/player'
 import perlin from './perlin.js'
 import Cooking from './ui/cooking'
 import Clock from './models/Clock'
-
 import checkWorld from './framework/world/checkWorld'
 
-export class GameScene extends Phaser.Scene {
+  export class GameScene extends Phaser.Scene {
     constructor() {
         super({
             key: 'GameScene'
@@ -30,13 +28,12 @@ export class GameScene extends Phaser.Scene {
         this.crafts = crafts
         this.structures = structures
 
-        this.borders = {
-            'grass': ['grass_top', 'grass_left', 'grass_bottom', 'grass_right'],
-            'sand': ['sand_top', 'sand_left', 'sand_bottom', 'sand_right'],
-            '': ['rock_top', 'rock_left', 'rock_bottom', 'rock_right'],
-            'savanna_grass': ['savanna_grass_top', 'savanna_grass_left', 'savanna_grass_bottom', 'savanna_grass_right'],
-            'dry_grass': ['dry_grass_top', 'dry_grass_left', 'dry_grass_bottom', 'dry_grass_right'],
-        }
+        this.borders = [
+            'grass',
+            'sand',
+            'savanna_grass',
+            'dry_grass'
+        ]
 
         this.ui = {
             coords: null,

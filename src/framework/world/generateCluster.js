@@ -1,4 +1,4 @@
-import makeKey from '../makeKey'
+import makeKey from '../general/makeKey'
 import renderWorld from './renderWorld'
 import game from '../../index'
 import perlin from '../../perlin'

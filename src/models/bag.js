@@ -1,6 +1,6 @@
-import createBackground from '../framework/ui/createBackground'
-import addText from '../framework/ui/addText'
-import addImage from '../framework/ui/addImage'
+import createBackground from '../framework/graphics/createBackground'
+import addText from '../framework/graphics/addText'
+import addImage from '../framework/graphics/addImage'
 import index from '../framework/item'
 
 export default class Bag {

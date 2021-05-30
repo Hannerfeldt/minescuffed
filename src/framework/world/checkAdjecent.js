@@ -1,32 +1,47 @@
-import game from '../../index'
+import exportGameScene from '../../exportGameScene'
 import checkTile from '../checkTile'
-import addImage from '../addImage'
+import addImage from '../graphics/addImage'
 
-const checkAdjacent = (x, y, tile) => {
-    const _this = game.scene.scenes[2]
+const getCordsforAdjecent = (config) => {
+    let { xPos, yPos, i } = config
+    if (i % 2 == 0) return { x: 0, y: yPos + (i - 1) }
+    else return { x: xPos + (i - 2), y: 0 }
+}
+
+const checkAdjacent = (xPos, yPos, tile) => {
+    const game = exportGameScene()
 
     for (let i = 0; i < 4; i++) {
-        let xDir = 0
-        let yDir = 0
-        i % 2 == 0 ? yDir += (i - 1) : xDir += (i - 2)
-        const adjecent = checkTile(x + xDir, y + yDir)
-        if (adjecent !== undefined) {
-            const tileDiff = adjecent.key !== tile.key
-            if (tileDiff) {
-                if (_this.tiles[tile.key].bordersHierarchy < _this.tiles[adjecent.key].bordersHierarchy) {
-                    if (!adjecent.border) adjecent.border = []
-                    if (_this.borders[tile.key]) {
-                        adjecent.border[i < 2 ? i + 2 : i - 2] = addImage((x + xDir) * 96, (y + yDir) * 96, _this.borders[tile.key][i < 2 ? i + 2 : i - 2], -1)
-                    }
-                } else {
-                    if (!tile.border) tile.border = []
-                    if (_this.borders[adjecent.key]) {
-                        tile.border[i] = addImage(x * 96, y * 96, _this.borders[adjecent.key][i], 1)
-                    }
-                }
-            }
-        }
+        const { x, y } = getCordsforAdjecent({xPos, yPos, i})
+        const adjecent = checkTile(x, y)
 
+        if (adjecent === undefined) return
+        if (adjecent.key === tile.key) return
+
+        if (game.tiles[tile.key].bordersHierarchy < game.tiles[adjecent.key].bordersHierarchy) {
+
+            if (!adjecent.border) adjecent.border = []
+            if (!game.borders[tile.key]) return
+
+            const index = i < 2 ? i + 2 : i - 2
+            adjecent.border[index] = addImage({
+                x: x * 96,
+                y: y * 96,
+                key: game.borders[tile.key] + '_border',
+                rotate: (-Math.PI / 2) + (index * Math.PI / 2),
+                zIndex: 1,
+            })
+        } else {
+            if (!tile.border) tile.border = []
+            if (!game.borders[adjecent.key]) return
+
+            tile.border[i] = addImage({
+                x: x * 96,
+                y: y * 96,
+                key: game.borders[adjecent.key] + '_border',
+                zIndex: 2
+            })
+        }
     }
 }
 

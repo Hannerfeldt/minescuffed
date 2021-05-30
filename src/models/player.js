@@ -1,8 +1,8 @@
 import Bag from './bag'
 import Crafting from '../ui/crafting'
 import Hunger from '../ui/hunger'
-import makeKey from '../framework/makeKey'
-import drop from '../framework/drop'
+import makeKey from '../framework/general/makeKey'
+import drop from '../framework/interaction/drop'
 
 export class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, name){
