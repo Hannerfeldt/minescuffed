@@ -1,4 +1,6 @@
-module.exports = {
+import grow from '../framework/alarm/grow'
+
+const structures = {
     'tree': {
         key: 'tree',
         solid: {
@@ -57,11 +59,11 @@ module.exports = {
             ],
         }],
         alarm: [{
-            time: [0, 1, 0, 0, 0, 0],
-            key: 'bush'
+            time: [5, 0, 0, 0, 0, 0],
+            fn: (e) => grow('tree', e),
         },{
-            time: [0, 1, 0, 0, 0, 0],
-            key: 'pinetree'
+            time: [10, 0, 0, 0, 0, 0],
+            fn: (e) => grow('pinetree', e),
         }]
     },
     'stone_ore': {
@@ -403,3 +405,5 @@ module.exports = {
         rotation: 0
     },
 }
+
+export { structures as default}

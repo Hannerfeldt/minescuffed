@@ -1,4 +1,3 @@
-import tiles from '../../data/tiles'
 import addImage from '../graphics/addImage'
 import exportGameScene from '../../exportGameScene'
 import checkAdjacent from './checkAdjecent/index'
@@ -18,14 +17,17 @@ const renderWorld = (x, y, world) => {
 
     if (world.structure !== undefined) {
         const struct = world.structure
+        if (struct.src) struct.src.destroy()
         if (game.structures[struct.key].animation !== undefined) struct.src = game.add.sprite(x * 96, y * 96, game.structures[struct.key].key).setDepth(2).anims.play(game.structures[struct.key].animation['start'])
         else if (game.structures[struct.key].rotation !== undefined) struct.src = game.add.sprite(x * 96, y * 96, game.structures[struct.key].key).setDepth(2)
-        else struct.src = addImage({
-            x: x * 96,
-            y: y * 96,
-            key: game.structures[struct.key].key,
-            zIndex: 2,
-        })
+        else  {
+            struct.src = addImage({
+                x: x * 96,
+                y: y * 96,
+                key: game.structures[struct.key].key,
+                zIndex: 2,
+            })
+        }
         struct.src.setOrigin(game.structures[struct.key].origin.x, game.structures[struct.key].origin.y)
         // struct is solid, can't walk through it!
         if (game.structures[struct.key].solid !== undefined) {
