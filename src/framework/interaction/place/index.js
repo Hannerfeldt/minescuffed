@@ -1,5 +1,6 @@
 import addImage from '../../graphics/addImage'
 import followCursor from './followCursor'
+import placeStructure from './placeStructure'
 import exportGameScene from '../../../exportGameScene'
 import rotate from './rotate'
 
@@ -18,8 +19,8 @@ const place = (craft, costs) => {
     if (craft.rotations) rotate(craft.rotations, blueprintImg)
 
     game.input.activePointer.isDown = false
-    game.input.on('pointermove', (event) => followCursor(event, game.player, blueprintImg))
-    game.input.on('pointerdown', (event) => placeBuilding(event, costs))
+    game.input.on('pointermove', (e) => followCursor(e, game.player, blueprintImg))
+    game.input.on('pointerdown', (e) => placeStructure(e, costs, blueprintImg, craft))
 }
 
 export { place as default }

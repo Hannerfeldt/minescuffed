@@ -28,13 +28,6 @@ import checkWorld from './framework/world/checkWorld'
         this.crafts = crafts
         this.structures = structures
 
-        this.borders = [
-            'grass',
-            'sand',
-            'savanna_grass',
-            'dry_grass'
-        ]
-
         this.ui = {
             coords: null,
         }
@@ -147,10 +140,6 @@ import checkWorld from './framework/world/checkWorld'
         this.keyboard.F.on('down', e => this.player.hunger.eating())
         this.keyboard.SPACE.on('down', e => this.player.interact())
 
-        // pointer event
-        this.input.on('pointerdown', (e) => {
-
-        })
         this.cameras.main.startFollow(this.player)
         // zoom
         this.input.on('wheel', e => {

@@ -2,7 +2,8 @@ module.exports = {
     'grass': {
         key: 'grass',
         swimmable: false,
-        bordersHierarchy: 10
+        bordersHierarchy: 10,
+        border: true
     },
     'water': {
         key: 'water',
@@ -12,7 +13,8 @@ module.exports = {
     'sand': {
         key: 'sand',
         swimmable: false,
-        bordersHierarchy: 20
+        bordersHierarchy: 20,
+        border: true
     },
     'dirt': {
         key: 'dirt',
@@ -32,11 +34,13 @@ module.exports = {
     'savanna_grass': {
         key: 'savanna_grass',
         swimmable: false,
-        bordersHierarchy: 13
+        bordersHierarchy: 13,
+        border: true
     },
     'dry_grass': {
         key: 'dry_grass',
         swimmable: false,
-        bordersHierarchy: 11
+        bordersHierarchy: 11,
+        border: true
     },
 }

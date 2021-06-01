@@ -49,9 +49,12 @@ module.exports = {
         mineduration: 1,
         drop: [{
             key: 'sapling',
-            chance: 1,
-            quantity: 1,
-            chanceDivided: false
+            rate: [
+                {
+                    amount: 1,
+                    chance: 1,
+                },
+            ],
         }],
         alarm: [{
             time: [0, 1, 0, 0, 0, 0],
@@ -60,24 +63,6 @@ module.exports = {
             time: [0, 1, 0, 0, 0, 0],
             key: 'pinetree'
         }]
-    },
-    'bush': {
-        key: 'bush',
-        mineduration: 1,
-        origin: {
-            x: 0.5,
-            y: 1,
-        },
-        offset: {
-            x: 0.5,
-            y: 0.5,
-        },
-        drop: [{
-            key: 'wood',
-            chance: 1,
-            quantity: 1,
-            chanceDivided: false
-        }],
     },
     'stone_ore': {
         key: 'stone_ore',
@@ -96,9 +81,12 @@ module.exports = {
         mineduration: 3,
         drop: [{
             key: 'stone',
-            chance: 1,
-            quantity: 1,
-            chanceDivided: false
+            rate: [
+                {
+                    amount: 1,
+                    chance: 0.9,
+                },
+            ],
         }],
     },
     'coal_ore': {
@@ -118,9 +106,12 @@ module.exports = {
         mineduration: 4,
         drop: [{
             key: 'coal',
-            chance: 1,
-            quantity: 3,
-            chanceDivided: true
+            rate: [
+                {
+                    amount: 1,
+                    chance: 0.7,
+                },
+            ],
         }],
     },
     'campfire': {
@@ -140,9 +131,12 @@ module.exports = {
         mineduration: 2,
         drop: [{
             key: 'wood',
-            chance: 1,
-            quantity: 2,
-            chanceDivided: false
+            rate: [
+                {
+                    amount: 1,
+                    chance: 1,
+                },
+            ],
         }],
         interaction: 'Cooking',
         animation: {
@@ -150,28 +144,6 @@ module.exports = {
             icon: 'burning',
             other: 'burning'
         }
-    },
-    'tree2': {
-        key: 'tree2',
-        solid: {
-            w: 30,
-            h: 25
-        },
-        origin: {
-            x: 0.5,
-            y: 1,
-        },
-        offset: {
-            x: 0.5,
-            y: 0.5,
-        },
-        mineduration: 2,
-        drop: [{
-            key: 'wood',
-            chance: 1,
-            quantity: 2,
-            chanceDivided: true
-        }],
     },
     'pinetree': {
         key: 'pinetree',
@@ -190,14 +162,24 @@ module.exports = {
         mineduration: 2,
         drop: [{
             key: 'wood',
-            chance: 1,
-            quantity: 2,
-            chanceDivided: true
+            rate: [
+                {
+                    amount: 1,
+                    chance: 0.9,
+                },
+                {
+                    amount: 2,
+                    chance: 0.6,
+                },
+            ],
         }, {
             key: 'sapling',
-            chance: 0.5,
-            quantity: 1,
-            chanceDivided: false
+            rate: [
+                {
+                    amount: 1,
+                    chance: 0.5,
+                },
+            ],
         }],
     },
     'stone_ore2': {
@@ -217,9 +199,12 @@ module.exports = {
         mineduration: 3,
         drop: [{
             key: 'stone',
-            chance: 1,
-            quantity: 1,
-            chanceDivided: false
+            rate: [
+                {
+                    amount: 1,
+                    chance: 1,
+                },
+            ],
         }],
     },
     'cactus': {
@@ -255,9 +240,12 @@ module.exports = {
         mineduration: 2,
         drop: [{
             key: 'wood',
-            chance: 1,
-            quantity: 1,
-            chanceDivided: true
+            rate: [
+                {
+                    amount: 1,
+                    chance: 1,
+                },
+            ],
         }],
     },
     'stone_moss': {
@@ -277,9 +265,12 @@ module.exports = {
         mineduration: 2,
         drop: [{
             key: 'stone',
-            chance: 1,
-            quantity: 1,
-            chanceDivided: true
+            rate: [
+                {
+                    amount: 1,
+                    chance: 1,
+                },
+            ],
         }],
     },
     'savanna_tree': {
@@ -299,9 +290,12 @@ module.exports = {
         mineduration: 2,
         drop: [{
             key: 'wood',
-            chance: 1,
-            quantity: 2,
-            chanceDivided: true
+            rate: [
+                {
+                    amount: 1,
+                    chance: 1,
+                },
+            ],
         }],
     },
     'wooden_wall_up': {
@@ -321,9 +315,12 @@ module.exports = {
         mineduration: 2,
         drop: [{
             key: 'wood',
-            chance: 1,
-            quantity: 2,
-            chanceDivided: true
+            rate: [
+                {
+                    amount: 1,
+                    chance: 1,
+                },
+            ],
         }],
         rotation: 0
     },
@@ -344,9 +341,12 @@ module.exports = {
         mineduration: 2,
         drop: [{
             key: 'wood',
-            chance: 1,
-            quantity: 2,
-            chanceDivided: true
+            rate: [
+                {
+                    amount: 1,
+                    chance: 1,
+                },
+            ],
         }],
         rotation: 0
     },
@@ -367,9 +367,12 @@ module.exports = {
         mineduration: 2,
         drop: [{
             key: 'wood',
-            chance: 1,
-            quantity: 2,
-            chanceDivided: true
+            rate: [
+                {
+                    amount: 1,
+                    chance: 1,
+                },
+            ],
         }],
         rotation: 0
     },
@@ -390,9 +393,12 @@ module.exports = {
         mineduration: 2,
         drop: [{
             key: 'wood',
-            chance: 1,
-            quantity: 2,
-            chanceDivided: true
+            rate: [
+                {
+                    amount: 1,
+                    chance: 1,
+                },
+            ],
         }],
         rotation: 0
     },

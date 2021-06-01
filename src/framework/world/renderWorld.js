@@ -1,8 +1,7 @@
 import tiles from '../../data/tiles'
 import addImage from '../graphics/addImage'
 import exportGameScene from '../../exportGameScene'
-import checkAdjacent from './checkAdjecent'
-
+import checkAdjacent from './checkAdjecent/index'
 
 const renderWorld = (x, y, world) => {
     const game = exportGameScene()

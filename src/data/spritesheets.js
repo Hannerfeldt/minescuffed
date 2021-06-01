@@ -14,17 +14,8 @@ module.exports = [{
     name: 'player_attacking',
     source: require('../assets/player/player_attacking.png')
 }, {
-    name: 'chest',
-    source: require('../assets/chest/chest.png')
-}, {
-    name: 'legs',
-    source: require('../assets/legs/legs.png')
-}, {
     name: 'campfire',
     source: require('../assets/campfire.png')
-}, {
-    name: 'grass_border',
-    source: require('../assets/grass_border.png')
 }, {
     name: 'animals',
     source: require('../assets/animals.png')

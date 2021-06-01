@@ -40,7 +40,14 @@ export default class Bag {
             this.graphics.items[i].background = createBackground(55, y - 5 , 340, 30, 0x666666)
             if (e.use) this.graphics.items[i].background.setInteractive(), this.graphics.items[i].background.on('pointerdown',
                 (event) => index(e.use)(e.key))
-            this.graphics.items[i].image = addImage(75, y, this.scene.items[e.key].key, 0.5, 0.2)
+            this.graphics.items[i].image = addImage({
+                x: 75,
+                y,
+                key: this.scene.items[e.key].key,
+                scale: 0.5,
+                origin: 0.2,
+                scrollFactor: true,
+            })
             this.graphics.items[i].text = addText(120, y, this.scene.items[e.key].key + ' ' + e.quantity)
             this.graphics.items[i].button = addText(350, y, '->')
             this.graphics.items[i].button.setInteractive()

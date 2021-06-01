@@ -1,4 +1,4 @@
-import exportGameScene from '../../../../GameScene'
+import exportGameScene from '../../../../exportGameScene'
 
 const rotate = (rotations, blueprintImg) => {
     const game = exportGameScene()

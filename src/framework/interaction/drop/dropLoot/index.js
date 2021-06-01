@@ -1,5 +1,6 @@
 import exportGameScene from '../../../../exportGameScene'
 import addBody from '../../../physics/addBody'
+import addImage from '../../../graphics/addImage'
 
 const randomDropPostion = (dir) => {
     return dir * 96 + ((Math.random() * 48) - 24)
@@ -20,8 +21,8 @@ const dropLoot = (loot, amount, x, y) => {
             size: [20, 20],
         })
 
-        game.physics.add.overlap(game.player, loot, () => {
-            game.player.bag.add(loot.key), loot.destroy()
+        game.physics.add.overlap(game.player, lootImg, () => {
+            game.player.bag.add(loot.key), lootImg.destroy()
         }, () => game.player.bag.canPickUp(), game)
     }
 }

@@ -1,9 +1,9 @@
 import makeKey from '../general/makeKey'
-import game from '../../index'
+import exportGameScene from '../../exportGameScene'
 import generateCluster from './generateCluster'
 
 const generateBiome = (x, y, biome) => {
-    const { world } = game.scene.scenes[2]
+    const { world } = exportGameScene()
 
     const key = makeKey(x, y)
     if (world[key] === undefined) world[key] = {}
