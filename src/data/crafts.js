@@ -8,13 +8,26 @@ module.exports = {
         }],
         animation: true
     },
-    'wooden_wall_up': {
-        key: 'wooden_wall_up',
+    'wooden_wall0': {
+        name: 'wooden wall',
+        key: 'wooden_wall0',
         tile: true,
         cost: [{
             key: 'wood',
-            amount: 2
+            amount: 2,
         }],
-        rotations: ['wooden_wall_up', 'wooden_wall_right', 'wooden_wall_down', 'wooden_wall_left']
+        adjustable: [
+            'wooden_wall0',
+            'wooden_wall1',
+            'wooden_wall2',
+            'wooden_wall3',
+            'wooden_wall4',
+            'wooden_wall5',
+            'wooden_wall6',
+            'wooden_wall7',
+            'wooden_wall8',
+            'wooden_wall9',
+            'wooden_wall10',
+        ]
     },
 }

@@ -1,6 +1,5 @@
 import addImage from '../../../../graphics/addImage'
 
-
 const addSrc = (x, y, struct, game) => {
     if (struct.src) struct.src.destroy()
 
@@ -14,7 +13,10 @@ const addSrc = (x, y, struct, game) => {
             zIndex: 2,
         })
     }
-    struct.src.setOrigin(game.structures[struct.key].origin.x, game.structures[struct.key].origin.y)
+    struct.src.setOrigin(
+        game.structures[struct.key].origin.x,
+        game.structures[struct.key].origin.y
+    )
 }
 
 export { addSrc as default }

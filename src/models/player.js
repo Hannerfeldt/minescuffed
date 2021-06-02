@@ -3,6 +3,7 @@ import Crafting from '../ui/crafting'
 import Hunger from '../ui/hunger'
 import makeKey from '../framework/general/makeKey'
 import drop from '../framework/interaction/drop'
+import removeStructure from '../framework/general/removeStructure'
 
 export class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, name){
@@ -146,8 +147,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             setTimeout(() => {
                 this.stunned = false
                 this.canGather = true
-                this.scene.world['x' + x + 'y' + y].structure.src.destroy()
-                delete this.scene.world['x' + x + 'y' + y].structure
+                removeStructure(this.scene.world['x' + x + 'y' + y])
                 // scene.renderWorld(x, y, scene.world['x'+x+'y'+y])
                 this.anims.pause(this.anims.currentAnim.frames[0])
                 struct.drop.forEach(e => drop(x, y, e))

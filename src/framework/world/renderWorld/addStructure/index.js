@@ -1,5 +1,6 @@
 import exportGameScene from '../../../../exportGameScene'
 import addSrc from './addSrc'
+import makeSolid from './makeSolid'
 
 const addStructure = (x, y, struct) => {
     const game = exportGameScene()
@@ -8,12 +9,7 @@ const addStructure = (x, y, struct) => {
 
     // struct is solid, can't walk through it!
     if (game.structures[struct.key].solid !== undefined) {
-        game.physics.add.existing(struct.src, true)
-        //struct.src.body.setImmovable(true)
-        struct.src.body.setSize(game.structures[struct.key].solid.w, game.structures[struct.key].solid.h, true)
-        // struct.src.body.setOffset(game.structures[struct.key].offset.x, game.structures[struct.key].offset.y)
-        game.solid.add(struct.src)
-        struct.src.body.debugShowBody = false
+        makeSolid(x, y, struct, game)
     }
 
     //

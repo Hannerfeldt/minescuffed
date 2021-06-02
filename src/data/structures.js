@@ -1,25 +1,22 @@
-import grow from '../framework/alarm/grow'
+import grow from '../framework/timer/grow'
 
 const structures = {
     'tree': {
         key: 'tree',
-        solid: {
+        solid: [{
             w: 30,
-            h: 25
-        },
+            h: 25,
+            x: 0,
+            y: 33,
+        }],
         origin: {
             x: 0.5,
             y: 1,
         },
-        offset: {
-            x: 33,
-            y: 0.5,
-        },
         mineduration: 2,
         drop: [{
             key: 'wood',
-            rate: [
-                {
+            rate: [{
                     amount: 1,
                     chance: 0.6,
                 },
@@ -36,109 +33,96 @@ const structures = {
     },
     'sapling': {
         key: 'sapling',
-        solid: {
-            w: 30,
-            h: 25
-        },
+        solid: [{
+            w: 20,
+            h: 15,
+            x: 0,
+            y: 33,
+        }],
         origin: {
             x: 0.5,
             y: 1,
         },
-        offset: {
-            x: 33,
-            y: 0.5,
-        },
         mineduration: 1,
         drop: [{
             key: 'sapling',
-            rate: [
-                {
-                    amount: 1,
-                    chance: 1,
-                },
-            ],
+            rate: [{
+                amount: 1,
+                chance: 1,
+            }, ],
         }],
         alarm: [{
             time: [5, 0, 0, 0, 0, 0],
             fn: (e) => grow('tree', e),
-        },{
+        }, {
             time: [10, 0, 0, 0, 0, 0],
             fn: (e) => grow('pinetree', e),
         }]
     },
     'stone_ore': {
         key: 'stone_ore',
-        solid: {
+        solid: [{
             w: 30,
-            h: 25
-        },
+            h: 25,
+            x: 0,
+            y: 33,
+        }],
         origin: {
             x: 0.5,
             y: 1,
         },
-        offset: {
-            x: 0.5,
-            y: 0.5,
-        },
+
         mineduration: 3,
         drop: [{
             key: 'stone',
-            rate: [
-                {
-                    amount: 1,
-                    chance: 0.9,
-                },
-            ],
+            rate: [{
+                amount: 1,
+                chance: 0.9,
+            }, ],
         }],
     },
     'coal_ore': {
         key: 'coal_ore',
-        solid: {
+        solid: [{
             w: 30,
-            h: 25
-        },
+            h: 25,
+            x: 0,
+            y: 33,
+        }],
         origin: {
             x: 0.5,
             y: 1,
         },
-        offset: {
-            x: 0.5,
-            y: 0.5,
-        },
+
         mineduration: 4,
         drop: [{
             key: 'coal',
-            rate: [
-                {
-                    amount: 1,
-                    chance: 0.7,
-                },
-            ],
+            rate: [{
+                amount: 1,
+                chance: 0.7,
+            }, ],
         }],
     },
     'campfire': {
         key: 'campfire',
-        solid: {
+        solid: [{
             w: 30,
-            h: 25
-        },
+            h: 25,
+            x: 0,
+            y: 33,
+        }],
         origin: {
             x: 0.5,
             y: 1,
         },
-        offset: {
-            x: 0.5,
-            y: 0.5,
-        },
+
         mineduration: 2,
         drop: [{
             key: 'wood',
-            rate: [
-                {
-                    amount: 1,
-                    chance: 1,
-                },
-            ],
+            rate: [{
+                amount: 1,
+                chance: 1,
+            }, ],
         }],
         interaction: 'Cooking',
         animation: {
@@ -149,23 +133,20 @@ const structures = {
     },
     'pinetree': {
         key: 'pinetree',
-        solid: {
-            w: 15,
-            h: 10
-        },
+        solid: [{
+            w: 10,
+            h: 10,
+            x: 10,
+            y: -20,
+        }],
         origin: {
             x: 0.5,
             y: 1,
         },
-        offset: {
-            x: 5,
-            y: 20,
-        },
         mineduration: 2,
         drop: [{
             key: 'wood',
-            rate: [
-                {
+            rate: [{
                     amount: 1,
                     chance: 0.9,
                 },
@@ -176,234 +157,137 @@ const structures = {
             ],
         }, {
             key: 'sapling',
-            rate: [
-                {
-                    amount: 1,
-                    chance: 0.5,
-                },
-            ],
+            rate: [{
+                amount: 1,
+                chance: 0.5,
+            }, ],
         }],
     },
     'stone_ore2': {
         key: 'stone_ore2',
-        solid: {
+        solid: [{
             w: 30,
-            h: 25
-        },
+            h: 25,
+            x: 0,
+            y: 33,
+        }],
         origin: {
             x: 0.5,
             y: 1,
         },
-        offset: {
-            x: 0.5,
-            y: 0.5,
-        },
+
         mineduration: 3,
         drop: [{
             key: 'stone',
-            rate: [
-                {
-                    amount: 1,
-                    chance: 1,
-                },
-            ],
+            rate: [{
+                amount: 1,
+                chance: 1,
+            }, ],
         }],
     },
     'cactus': {
         key: 'cactus',
-        solid: {
+        solid: [{
             w: 30,
-            h: 25
-        },
+            h: 25,
+            x: 0,
+            y: 33,
+        }],
         origin: {
             x: 0.5,
             y: 1,
         },
-        offset: {
-            x: 0.5,
-            y: 0.5,
-        },
+
         mineduration: 2,
     },
     'palmtree': {
         key: 'palmtree',
-        solid: {
+        solid: [{
             w: 30,
-            h: 25
-        },
+            h: 25,
+            x: 0,
+            y: 33,
+        }],
         origin: {
             x: 0.5,
             y: 1,
         },
-        offset: {
-            x: 0.5,
-            y: 0.5,
-        },
+
         mineduration: 2,
         drop: [{
             key: 'wood',
-            rate: [
-                {
-                    amount: 1,
-                    chance: 1,
-                },
-            ],
+            rate: [{
+                amount: 1,
+                chance: 1,
+            }, ],
         }],
     },
     'stone_moss': {
         key: 'stone_moss',
-        solid: {
+        solid: [{
             w: 30,
-            h: 25
-        },
+            h: 25,
+            x: 0,
+            y: 33,
+        }],
         origin: {
             x: 0.5,
             y: 1,
         },
-        offset: {
-            x: 0.5,
-            y: 0.5,
-        },
+
         mineduration: 2,
         drop: [{
             key: 'stone',
-            rate: [
-                {
-                    amount: 1,
-                    chance: 1,
-                },
-            ],
+            rate: [{
+                amount: 1,
+                chance: 1,
+            }, ],
         }],
     },
     'savanna_tree': {
         key: 'savanna_tree',
-        solid: {
+        solid: [{
             w: 15,
-            h: 15
-        },
+            h: 15,
+            x: 0,
+            y: 33,
+        }],
         origin: {
             x: 0.5,
             y: 1,
         },
-        offset: {
-            x: 0.5,
-            y: 0.5,
-        },
+
         mineduration: 2,
         drop: [{
             key: 'wood',
-            rate: [
-                {
-                    amount: 1,
-                    chance: 1,
-                },
-            ],
+            rate: [{
+                amount: 1,
+                chance: 1,
+            }, ],
         }],
     },
-    'wooden_wall_up': {
-        key: 'wooden_wall_up',
-        solid: {
+    'wooden_wall0': {
+        key: 'wooden_wall0',
+        solid: [{
             w: 96,
-            h: 5
-        },
-        origin: {
-            x: 0.5,
-            y: 0.5,
-        },
-        offset: {
+            h: 5,
             x: 0,
             y: 33,
-        },
-        mineduration: 2,
-        drop: [{
-            key: 'wood',
-            rate: [
-                {
-                    amount: 1,
-                    chance: 1,
-                },
-            ],
         }],
-        rotation: 0
-    },
-    'wooden_wall_right': {
-        key: 'wooden_wall_right',
-        solid: {
-            w: 5,
-            h: 96
-        },
         origin: {
             x: 0.5,
             y: 0.5,
         },
-        offset: {
-            x: 91,
-            y: 0,
-        },
         mineduration: 2,
         drop: [{
             key: 'wood',
-            rate: [
-                {
-                    amount: 1,
-                    chance: 1,
-                },
-            ],
-        }],
-        rotation: 0
-    },
-    'wooden_wall_down': {
-        key: 'wooden_wall_down',
-        solid: {
-            w: 96,
-            h: 5
-        },
-        origin: {
-            x: 0.5,
-            y: 0.5,
-        },
-        offset: {
-            x: 0,
-            y: 66,
-        },
-        mineduration: 2,
-        drop: [{
-            key: 'wood',
-            rate: [
-                {
-                    amount: 1,
-                    chance: 1,
-                },
-            ],
-        }],
-        rotation: 0
-    },
-    'wooden_wall_left': {
-        key: 'wooden_wall_left',
-        solid: {
-            w: 5,
-            h: 96
-        },
-        origin: {
-            x: 0.5,
-            y: 0.5,
-        },
-        offset: {
-            x: 5,
-            y: 0,
-        },
-        mineduration: 2,
-        drop: [{
-            key: 'wood',
-            rate: [
-                {
-                    amount: 1,
-                    chance: 1,
-                },
-            ],
+            rate: [{
+                amount: 1,
+                chance: 1,
+            }, ],
         }],
         rotation: 0
     },
 }
 
-export { structures as default}
+export { structures as default }
