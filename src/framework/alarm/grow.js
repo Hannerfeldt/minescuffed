@@ -1,5 +1,5 @@
 import exportGameScene from '../../exportGameScene'
-import renderWorld from '../world/renderWorld'
+import renderWorld from '../world/renderWorld/index'
 import makeKey from '../general/makeKey'
 
 const grow = (evolve, cords) => {

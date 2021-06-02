@@ -1,6 +1,6 @@
 import makeKey from '../general/makeKey'
 import exportGameScene from '../../exportGameScene'
-import renderWorld from './renderWorld'
+import renderWorld from './renderWorld/index'
 
 const rememberWorld = (x, y) => {
     const game = exportGameScene()

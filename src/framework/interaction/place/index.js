@@ -14,6 +14,7 @@ const place = (craft, costs) => {
         key: craft.key,
         blendMode: 'SCREEN',
         tint: 0xfff00f,
+        origin: game.structures[craft.key].origin
     })
 
     if (craft.rotations) rotate(craft.rotations, blueprintImg)

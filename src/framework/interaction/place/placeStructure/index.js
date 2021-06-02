@@ -2,7 +2,7 @@ import rangeCheckTile from '../rangeCheck/rangeCheckTile'
 import exportGameScene from '../../../../exportGameScene'
 import makeKey from '../../../general/makeKey'
 import convertCordToTileFormat from '../../../general/convertCordToTileFormat'
-import renderWorld from '../../../world/renderWorld'
+import renderWorld from '../../../world/renderWorld/index'
 
 const placeStructure = (e, costs, blueprintImg, craft) => {
     const game = exportGameScene()

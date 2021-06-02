@@ -6,7 +6,11 @@ const addImage = (config) => {
     const image = game.add.image(config.x, config.y, config.key)
 
     config.scrollFactor ? image.setScrollFactor(0) : ''
-    image.setOrigin(config.origin || 0.5)
+
+    if (typeof config.origin === 'object' && config.origin !== null) {
+        image.setOrigin(config.origin.x, config.origin.y)
+    } else image.setOrigin(config.origin || 0.5)
+
     image.setDepth(config.zIndex ?? 10)
     config.scale ? image.setScale(config.scale) : ''
     config.tint ? image.setTint(config.tint) : ''

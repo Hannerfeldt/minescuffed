@@ -1,4 +1,6 @@
-module.exports = {
+import plant from '../framework/item/plant'
+
+const items = {
     'wood': {
         key: 'wood',
     },
@@ -10,8 +12,7 @@ module.exports = {
     },
     'sapling': {
         key: 'sapling',
-        use: 'plant',
-        parameter: 'sapling',
+        use: () => plant('sapling', 1),
     },
     'raw_chicken': {
         key: 'raw_chicken',
@@ -26,3 +27,5 @@ module.exports = {
         replenish: 20,
     },
 }
+
+export { items as default }

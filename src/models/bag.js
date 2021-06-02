@@ -1,7 +1,6 @@
 import createBackground from '../framework/graphics/createBackground'
 import addText from '../framework/graphics/addText'
 import addImage from '../framework/graphics/addImage'
-import index from '../framework/item'
 
 export default class Bag {
     constructor(scene) {
@@ -38,8 +37,7 @@ export default class Bag {
             this.graphics.items[i] = {}
             const y = 105 + (i * 30) + (i * 5)
             this.graphics.items[i].background = createBackground(55, y - 5 , 340, 30, 0x666666)
-            if (e.use) this.graphics.items[i].background.setInteractive(), this.graphics.items[i].background.on('pointerdown',
-                (event) => index(e.use)(e.key))
+            if (e.use) this.graphics.items[i].background.setInteractive(), this.graphics.items[i].background.on('pointerdown', e.use)
             this.graphics.items[i].image = addImage({
                 x: 75,
                 y,
