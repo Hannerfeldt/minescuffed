@@ -179,28 +179,6 @@ import checkWorld from './framework/world/checkWorld'
         if (constructorName == 'Cooking') return new Cooking(this)
     }
 
-    tileAdaptive(x, y, id) {
-        const top = this.world['x' + x + 'y' + (y - 1)].key == id
-        const bottom = this.world['x' + x + 'y' + (y + 1)].key == id
-        const right = this.world['x' + (x + 1) + 'y' + y].key == id
-        const left = this.world['x' + (x - 1) + 'y' + y].key == id
-
-        if (top && right) this.world['x' + x + 'y' + y].src.setFrame(2)
-        else if (top && left) this.world['x' + x + 'y' + y].src.setFrame(3)
-        else if (bottom && left) this.world['x' + x + 'y' + y].src.setFrame(4)
-        else if (bottom && right) this.world['x' + x + 'y' + y].src.setFrame(5)
-        else if (bottom) this.world['x' + x + 'y' + y].src.setFrame(1)
-        else if (top) this.world['x' + x + 'y' + y].src.setFrame(1)
-        else if (right) this.world['x' + x + 'y' + y].src.setFrame(0)
-        else if (left) this.world['x' + x + 'y' + y].src.setFrame(0)
-        else this.world['x' + x + 'y' + y].src.setFrame(0)
-
-        if (top) this.tileAdaptive(x, (y - 1), id)
-        if (bottom) this.tileAdaptive(x, (y + 1), id)
-        if (left) this.tileAdaptive((x - 1), y, id)
-        if (right) this.tileAdaptive((x + 1), y, id)
-    }
-
     animationsCreate(name, skin, key, repeat, rate) {
         this.anims.create({
             key: name,

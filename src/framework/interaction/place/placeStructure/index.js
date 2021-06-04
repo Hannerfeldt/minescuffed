@@ -3,6 +3,7 @@ import exportGameScene from '../../../../exportGameScene'
 import makeKey from '../../../general/makeKey'
 import convertCordToTileFormat from '../../../general/convertCordToTileFormat'
 import renderWorld from '../../../world/renderWorld/index'
+import adaptStructure from '../adaptStructure'
 
 const placeStructure = (e, costs, blueprintImg, craft) => {
     const game = exportGameScene()
@@ -17,22 +18,26 @@ const placeStructure = (e, costs, blueprintImg, craft) => {
     game.input.off('pointerdown')
     game.input.off('pointermove')
 
-    game.world[key].structure = {}
-    game.world[key].structure.key = blueprintImg.texture.key
-
     const { alarm } = game.structures[craft.key]
     /*
-        e.time has to be mapped or else the array is just a reference
-        and any update to the reference is saved to the original array
+    e.time has to be mapped or else the array is just a reference
+    and any update to the reference is saved to the original array
     */
     if (alarm) alarm.forEach(e => game.clock.setAlarm(e.time.map((e) => e), e.fn, { x, y }))
 
     if (craft.rotations) game.keyboard.R.destroy()
+
+    game.world[key].structure = {}
+
+    game.world[key].structure.key = blueprintImg.texture.key
     blueprintImg.destroy()
 
-    renderWorld(x, y, game.world[key])
-
     costs.forEach(c => player.bag.reduce(c.key, c.cost))
+
+    const { adaptable } = game.crafts[craft.key]
+    if (adaptable) return adaptStructure(x, y, craft.name, adaptable, game.world, true)
+
+    renderWorld(x, y, game.world[key])
 }
 
 export { placeStructure as default }

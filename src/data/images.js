@@ -127,19 +127,47 @@ module.exports = [{
         source: require('../assets/savanna_tree.png')
     },
     {
-        name: 'wooden_wall_up',
-        source: require('../assets/wooden_wall_up.png')
+        name: 'wooden_wall0',
+        source: require('../assets/wall/wooden_wall0.png')
     },
     {
-        name: 'wooden_wall_left',
-        source: require('../assets/wooden_wall_left.png')
+        name: 'wooden_wall1',
+        source: require('../assets/wall/wooden_wall1.png')
     },
     {
-        name: 'wooden_wall_down',
-        source: require('../assets/wooden_wall_down.png')
+        name: 'wooden_wall2',
+        source: require('../assets/wall/wooden_wall2.png')
     },
     {
-        name: 'wooden_wall_right',
-        source: require('../assets/wooden_wall_right.png')
+        name: 'wooden_wall3',
+        source: require('../assets/wall/wooden_wall3.png')
+    },
+    {
+        name: 'wooden_wall4',
+        source: require('../assets/wall/wooden_wall4.png')
+    },
+    {
+        name: 'wooden_wall5',
+        source: require('../assets/wall/wooden_wall5.png')
+    },
+    {
+        name: 'wooden_wall6',
+        source: require('../assets/wall/wooden_wall6.png')
+    },
+    {
+        name: 'wooden_wall7',
+        source: require('../assets/wall/wooden_wall7.png')
+    },
+    {
+        name: 'wooden_wall8',
+        source: require('../assets/wall/wooden_wall8.png')
+    },
+    {
+        name: 'wooden_wall9',
+        source: require('../assets/wall/wooden_wall9.png')
+    },
+    {
+        name: 'wooden_wall10',
+        source: require('../assets/wall/wooden_wall10.png')
     },
 ]

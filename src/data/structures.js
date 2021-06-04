@@ -267,6 +267,7 @@ const structures = {
         }],
     },
     'wooden_wall0': {
+        name: 'wooden wall',
         key: 'wooden_wall0',
         solid: [{
             w: 96,
@@ -286,7 +287,226 @@ const structures = {
                 chance: 1,
             }, ],
         }],
-        rotation: 0
+    },
+    'wooden_wall1': {
+        name: 'wooden wall',
+        key: 'wooden_wall1',
+        solid: [{
+            w: 96,
+            h: 5,
+            x: 0,
+            y: 33,
+        }],
+        origin: {
+            x: 0.5,
+            y: 0.5,
+        },
+        mineduration: 2,
+        drop: [{
+            key: 'wood',
+            rate: [{
+                amount: 1,
+                chance: 1,
+            }, ],
+        }],
+    },
+    'wooden_wall2': {
+        name: 'wooden wall',
+        key: 'wooden_wall2',
+        solid: [{
+            w: 96,
+            h: 5,
+            x: 0,
+            y: 33,
+        }],
+        origin: {
+            x: 0.5,
+            y: 0.5,
+        },
+        mineduration: 2,
+        drop: [{
+            key: 'wood',
+            rate: [{
+                amount: 1,
+                chance: 1,
+            }, ],
+        }],
+    },
+    'wooden_wall3': {
+        name: 'wooden wall',
+        key: 'wooden_wall3',
+        solid: [{
+            w: 96,
+            h: 5,
+            x: 0,
+            y: 33,
+        }],
+        origin: {
+            x: 0.5,
+            y: 0.5,
+        },
+        mineduration: 2,
+        drop: [{
+            key: 'wood',
+            rate: [{
+                amount: 1,
+                chance: 1,
+            }, ],
+        }],
+    },
+    'wooden_wall4': {
+        name: 'wooden wall',
+        key: 'wooden_wall4',
+        solid: [{
+            w: 96,
+            h: 5,
+            x: 0,
+            y: 33,
+        }],
+        origin: {
+            x: 0.5,
+            y: 0.5,
+        },
+        mineduration: 2,
+        drop: [{
+            key: 'wood',
+            rate: [{
+                amount: 1,
+                chance: 1,
+            }, ],
+        }],
+    },
+    'wooden_wall5': {
+        name: 'wooden wall',
+        key: 'wooden_wall5',
+        solid: [{
+            w: 96,
+            h: 5,
+            x: 0,
+            y: 33,
+        }],
+        origin: {
+            x: 0.5,
+            y: 0.5,
+        },
+        mineduration: 2,
+        drop: [{
+            key: 'wood',
+            rate: [{
+                amount: 1,
+                chance: 1,
+            }, ],
+        }],
+    },
+    'wooden_wall6': {
+        name: 'wooden wall',
+        key: 'wooden_wall6',
+        solid: [{
+            w: 96,
+            h: 5,
+            x: 0,
+            y: 33,
+        }],
+        origin: {
+            x: 0.5,
+            y: 0.5,
+        },
+        mineduration: 2,
+        drop: [{
+            key: 'wood',
+            rate: [{
+                amount: 1,
+                chance: 1,
+            }, ],
+        }],
+    },
+    'wooden_wall7': {
+        name: 'wooden wall',
+        key: 'wooden_wall7',
+        solid: [{
+            w: 96,
+            h: 5,
+            x: 0,
+            y: 33,
+        }],
+        origin: {
+            x: 0.5,
+            y: 0.5,
+        },
+        mineduration: 2,
+        drop: [{
+            key: 'wood',
+            rate: [{
+                amount: 1,
+                chance: 1,
+            }, ],
+        }],
+    },
+    'wooden_wall8': {
+        name: 'wooden wall',
+        key: 'wooden_wall8',
+        solid: [{
+            w: 96,
+            h: 5,
+            x: 0,
+            y: 33,
+        }],
+        origin: {
+            x: 0.5,
+            y: 0.5,
+        },
+        mineduration: 2,
+        drop: [{
+            key: 'wood',
+            rate: [{
+                amount: 1,
+                chance: 1,
+            }, ],
+        }],
+    },
+    'wooden_wall9': {
+        name: 'wooden wall',
+        key: 'wooden_wall9',
+        solid: [{
+            w: 96,
+            h: 5,
+            x: 0,
+            y: 33,
+        }],
+        origin: {
+            x: 0.5,
+            y: 0.5,
+        },
+        mineduration: 2,
+        drop: [{
+            key: 'wood',
+            rate: [{
+                amount: 1,
+                chance: 1,
+            }, ],
+        }],
+    },
+    'wooden_wall10': {
+        name: 'wooden wall',
+        key: 'wooden_wall10',
+        solid: [{
+            w: 96,
+            h: 5,
+            x: 0,
+            y: 33,
+        }],
+        origin: {
+            x: 0.5,
+            y: 0.5,
+        },
+        mineduration: 2,
+        drop: [{
+            key: 'wood',
+            rate: [{
+                amount: 1,
+                chance: 1,
+            }, ],
+        }],
     },
 }
 

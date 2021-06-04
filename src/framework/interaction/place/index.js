@@ -19,6 +19,7 @@ const place = (craft, costs) => {
 
     if (craft.rotations) rotate(craft.rotations, blueprintImg)
 
+
     game.input.activePointer.isDown = false
     game.input.on('pointermove', (e) => followCursor(e, game.player, blueprintImg))
     game.input.on('pointerdown', (e) => placeStructure(e, costs, blueprintImg, craft))
