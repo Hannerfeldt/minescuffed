@@ -56,7 +56,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             this.scene.animals[obj.id].drop.forEach(e => drop(Math.round(obj.x/96), Math.round(obj.y/96), e))
             obj.kill()
         }
-        setTimeout(()=> this.canSwing = true, 1000)
+        setTimeout(() => this.canSwing = true, 1000)
     }
 
     checkPlayerPosition() {

@@ -31,6 +31,21 @@ const structures = {
             ],
         }],
     },
+    'tall_grass': {
+        key: 'tall_grass',
+        origin: {
+            x: 0.5,
+            y: 1,
+        },
+        mineduration: 1,
+        drop: [{
+            key: 'tall_grass',
+            rate: [{
+                amount: 1,
+                chance: 1,
+            }, ],
+        }]
+    },
     'sapling': {
         key: 'sapling',
         solid: [{
@@ -272,7 +287,7 @@ const structures = {
         solid: [{
             w: 96,
             h: 5,
-            x: 0,
+            x: -32,
             y: 33,
         }],
         origin: {
@@ -292,10 +307,10 @@ const structures = {
         name: 'wooden wall',
         key: 'wooden_wall1',
         solid: [{
-            w: 96,
-            h: 5,
-            x: 0,
-            y: 33,
+            w: 5,
+            h: 96,
+            x: 12,
+            y: -31,
         }],
         origin: {
             x: 0.5,
@@ -358,10 +373,15 @@ const structures = {
         name: 'wooden wall',
         key: 'wooden_wall4',
         solid: [{
-            w: 96,
+            w: 48,
             h: 5,
-            x: 0,
+            x: 12,
             y: 33,
+        }, {
+            w: 5,
+            h: 68,
+            x: 12,
+            y: -31,
         }],
         origin: {
             x: 0.5,

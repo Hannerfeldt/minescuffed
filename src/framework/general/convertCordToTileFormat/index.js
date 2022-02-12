@@ -1,5 +1,7 @@
+import world from '../../../data/world'
+
 const convertCordToTileFormat = (cord) => {
-    return Math.round(cord / 96)
+    return Math.round(cord / world.tileSize)
 }
 
 export { convertCordToTileFormat as default }

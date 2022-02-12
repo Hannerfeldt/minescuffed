@@ -1,5 +1,6 @@
 import exportGameScene from '../../../../exportGameScene'
 import addImage from '../../../graphics/addImage'
+import world from '../../../../data/world'
 
 const addBorder = (config) => {
     const game = exportGameScene()
@@ -9,8 +10,8 @@ const addBorder = (config) => {
     if (!tile.border) tile.border = []
 
     tile.border[i] = addImage({
-        x: x * 96,
-        y: y * 96,
+        x: x * world.tileSize,
+        y: y * world.tileSize,
         key: key + '_border',
         rotation: (i * (-Math.PI / 2)),
         zIndex: 2,

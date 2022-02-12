@@ -1,14 +1,15 @@
 import addImage from '../../../../graphics/addImage'
+import world from '../../../../../data/world'
 
 const addSrc = (x, y, struct, game) => {
     if (struct.src) struct.src.destroy()
-
-    if (game.structures[struct.key].animation !== undefined) struct.src = game.add.sprite(x * 96, y * 96, game.structures[struct.key].key).setDepth(2).anims.play(game.structures[struct.key].animation['start'])
-    else if (game.structures[struct.key].rotation !== undefined) struct.src = game.add.sprite(x * 96, y * 96, game.structures[struct.key].key).setDepth(2)
-    else  {
+    /* @TODO clean this up */
+    if (game.structures[struct.key].animation !== undefined) struct.src = game.add.sprite(x * world.tileSize, y * world.tileSize, game.structures[struct.key].key).setDepth(2).anims.play(game.structures[struct.key].animation['start'])
+    else if (game.structures[struct.key].rotation !== undefined) struct.src = game.add.sprite(x * world.tileSize, y * world.tileSize, game.structures[struct.key].key).setDepth(2)
+    else {
         struct.src = addImage({
-            x: x * 96,
-            y: y * 96,
+            x: x * world.tileSize,
+            y: y * world.tileSize,
             key: game.structures[struct.key].key,
             zIndex: 2,
         })

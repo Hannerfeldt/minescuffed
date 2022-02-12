@@ -26,8 +26,8 @@ module.exports = {
             { key: 'wooden_wall4', top: true, left: false, right: true, bottom: false },
             { key: 'wooden_wall3', top: true, left: true, right: false, bottom: false },
             { key: 'wooden_wall2', top: false, left: true, right: false, bottom: true },
-            { key: 'wooden_wall1', top: null, left: false, right: false, bottom: null },
             { key: 'wooden_wall0', top: false, left: null, right: null, bottom: false },
+            { key: 'wooden_wall1', top: null, left: false, right: false, bottom: null },
         ]
     },
 }

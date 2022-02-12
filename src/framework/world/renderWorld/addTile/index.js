@@ -1,10 +1,11 @@
 import addImage from '../../../graphics/addImage'
+import world from '../../../../data/world'
 
 const addTile = (x, y, tile) => {
     if (tile.src) tile.src.destroy()
     tile.src = addImage({
-        x: x * 96,
-        y: y * 96,
+        x: x * world.tileSize,
+        y: y * world.tileSize,
         key: tile.key,
         zIndex: -1
     })

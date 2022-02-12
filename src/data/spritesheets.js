@@ -3,7 +3,7 @@ module.exports = [{
     source: require('../assets/player/player_running.png')
 }, {
     name: 'breaking',
-    source: require('../assets/breaking.png')
+    source: require('../assets/general/breaking.png')
 }, {
     name: 'player_swimming',
     source: require('../assets/player/player_swimming.png')
@@ -15,8 +15,8 @@ module.exports = [{
     source: require('../assets/player/player_attacking.png')
 }, {
     name: 'campfire',
-    source: require('../assets/campfire.png')
+    source: require('../assets/structures/campfire.png')
 }, {
     name: 'animals',
-    source: require('../assets/animals.png')
+    source: require('../assets/animals/animals.png')
 }]

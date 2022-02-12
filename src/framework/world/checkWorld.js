@@ -2,9 +2,16 @@ import generateWorld from './generateWorld'
 import rememberWorld from './rememberWorld'
 import makeKey from '../general/makeKey'
 
+/* Render whatever is in the view of the camera */
 const checkWorld = (game) => {
-    for (let col = Math.round((game.cameras.main.worldView.left - 96) / 96); col < Math.round((game.cameras.main.worldView.right + 192) / 96); col++) {
-        for (let row = Math.round((game.cameras.main.worldView.top - 96) / 96); row < Math.round((game.cameras.main.worldView.bottom + 192) / 96); row++) {
+    const tileSize = 32;
+    const left = Math.round((game.cameras.main.worldView.left - tileSize) / tileSize);
+    const right = Math.round((game.cameras.main.worldView.right + tileSize * 2) / tileSize);
+    const top = Math.round((game.cameras.main.worldView.top - tileSize) / tileSize);
+    const bottom = Math.round((game.cameras.main.worldView.bottom + tileSize * 2) / tileSize);
+
+    for (let col = left; col < right; col++) {
+        for (let row = top; row < bottom; row++) {
             const key = makeKey(col, row)
             if (!game.world[key]) generateWorld(col, row)
             else if (!game.world[key].inView) rememberWorld(col, row)

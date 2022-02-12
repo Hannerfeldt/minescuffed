@@ -118,6 +118,10 @@
                 "tile": [{
                     "key": "dry_grass",
                     "chance": 1
+                }],
+                "struct": [{
+                    "key": "tall_grass",
+                    "chance": 0.1
                 }]
             }]
         }]

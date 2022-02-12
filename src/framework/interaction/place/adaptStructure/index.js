@@ -2,6 +2,8 @@ import makeKey from '../../../general/makeKey'
 import getCordsforAdjecent from '../../../world/checkAdjecent/getCordsforAdjecent'
 import renderWorld from '../../../world/renderWorld'
 import exportGameScene from '../../../../exportGameScene'
+import removeStructure from '../../../general/removeStructure'
+
 
 const adaptSturcture = (x, y, name, adaptable, world, sendBack) => {
     const game = exportGameScene()
@@ -13,7 +15,8 @@ const adaptSturcture = (x, y, name, adaptable, world, sendBack) => {
         const key = makeKey(xCheck, yCheck)
         /* Garbage code, get your shit together */
         if (!world[key].structure) return isAdjecent[isAdjecentKey] = false
-        if (!game.structures[world[key].structure.key]?.name === name) return isAdjecent[isAdjecentKey] = false
+        if (!game.structures[world[key].structure.key]?.name) return isAdjecent[isAdjecentKey] = false
+        if (!game.structures[world[key].structure.key].name === name) return isAdjecent[isAdjecentKey] = false
         isAdjecent[isAdjecentKey] = true
         if (sendBack) adaptSturcture(xCheck, yCheck, name, adaptable, world, false)
     })
@@ -24,7 +27,7 @@ const adaptSturcture = (x, y, name, adaptable, world, sendBack) => {
         })
     })
     world[thisKey].structure.key = key
-
+    if (!sendBack) world[thisKey].structure.body.forEach((e) => e.destroy());
     renderWorld(x, y, world[thisKey])
 }
 

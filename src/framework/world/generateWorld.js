@@ -6,9 +6,11 @@ const generateWorld = (x, y) => {
     const multiplier = 0.0075
     const noiseVal = perlin.noise.perlin2(x * multiplier, y * multiplier)
     let biomesId
+    /* @TODO no hard coded values for picking a biome */
     if (noiseVal < 0.0) biomesId = 0
     else if (noiseVal < 0.2) biomesId = 2
     else biomesId = 1
+    biomesId = 0
 
     generateBiome(x, y, biomes[biomesId])
 }

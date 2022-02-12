@@ -1,9 +1,10 @@
 import exportGameScene from '../../../../exportGameScene'
 import addBody from '../../../physics/addBody'
 import addImage from '../../../graphics/addImage'
+import world from '../../../../data/world'
 
 const randomDropPostion = (dir) => {
-    return dir * 96 + ((Math.random() * 48) - 24)
+    return dir * world.tileSize + ((Math.random() * 48) - 24)
 }
 
 const dropLoot = (loot, amount, x, y) => {

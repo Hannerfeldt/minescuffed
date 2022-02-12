@@ -8,7 +8,7 @@ const generateBiome = (x, y, biome) => {
     const key = makeKey(x, y)
     if (world[key] === undefined) world[key] = {}
     world[key].biome = biome.name
-    biome.clusters.forEach(e => generateCluster(x, y, e))
+    biome.clusters.forEach(cluster => generateCluster(x, y, cluster))
 }
 
 export { generateBiome as default }

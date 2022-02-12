@@ -33,8 +33,7 @@ const placeStructure = (e, costs, blueprintImg, craft) => {
     blueprintImg.destroy()
 
     costs.forEach(c => player.bag.reduce(c.key, c.cost))
-
-    const { adaptable } = game.crafts[craft.key]
+    const adaptable = game.crafts[craft.key]?.adaptable
     if (adaptable) return adaptStructure(x, y, craft.name, adaptable, game.world, true)
 
     renderWorld(x, y, game.world[key])
